@@ -1,0 +1,103 @@
+/* Button.module.css */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 60px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    transition: all 180ms ease;
+}
+
+.button:active:not(:disabled) {
+    transform: scale(0.96);
+}
+
+.button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* --- Variants --- */
+
+.main {
+    background: #1a1310;
+    color: #fff;
+}
+
+.main:hover:not(:disabled) {
+    opacity: 0.88;
+    transform: scale(1.01);
+}
+
+.main svg {
+    transition: transform 200ms ease;
+}
+
+.main:hover:not(:disabled) svg {
+    transform: translate(2px, -2px);
+}
+
+.secondary {
+    background: #fff;
+    color: #1a1310;
+    border: 1px solid #ecdcd5;
+}
+
+.secondary:hover:not(:disabled) {
+    background: #fdf7f4;
+    transform: scale(1.04);
+}
+
+/* --- Sizes --- */
+
+.sm {
+    padding: 6px 16px;
+    font-size: 0.8rem;
+}
+
+.md {
+    padding: 11px 20px;
+    font-size: 0.9rem;
+}
+
+.lg {
+    padding: 12px 26px;
+    font-size: 1rem;
+}
+
+/* --- Modifiers --- */
+
+.fullWidth {
+    width: 100%;
+}
+
+.loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Reduced motion --- */
+
+@media (prefers-reduced-motion: reduce) {
+    .button,
+    .main svg {
+        transition: none;
+    }
+
+    .main:hover:not(:disabled),
+    .secondary:hover:not(:disabled) {
+        transform: none;
+        scale: 1;
+    }
+}

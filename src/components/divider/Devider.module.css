@@ -1,0 +1,29 @@
+/* Divider.module.css */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #1a131077;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0 5px;
+    padding: 5px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #1a131032;
+}
+
+/* si pas de texte => ligne simple */
+.divider:not(:has(.dividerText))::before {
+    display: none;
+}
+
+.dividerText {
+    white-space: nowrap;
+}

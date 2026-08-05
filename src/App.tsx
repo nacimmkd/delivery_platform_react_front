@@ -1,12 +1,13 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import Background from './components/background/Background'
-import Header from './components/header/Header'
+import Background from './layouts/background/Background'
+import Header from './layouts/header/Header'
 
 function App() {
-
   return (
     <Background>
-      <Header/>
+        <Header />
+        <Outlet />
     </Background>
   )
     
