@@ -29,6 +29,10 @@
     text-decoration: none;
 }
 
+.logo_text::first-letter {
+    color: #FFDBCE;
+}
+
 /* ---- Right --------------------------------------------------- */
 
 .right_container {

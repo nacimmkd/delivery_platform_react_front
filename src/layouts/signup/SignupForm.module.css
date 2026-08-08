@@ -20,6 +20,17 @@
     text-align: center;
 }
 
+.error {
+    width: 100%;
+    background-color: #fdecea;
+    color: #b3392f;
+    border: 1px solid #f5c6c0;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
 /* ---- Formulaire ---------------------------------------------- */
 
 .form {

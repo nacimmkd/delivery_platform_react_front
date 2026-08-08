@@ -26,14 +26,20 @@ export interface paths {
     put: operations["updateParcel"];
     delete: operations["deleteParcel"];
   };
-  "/api/v1/users/{userId}/verification/verify": {
+  "/api/v1/users/verification/verify": {
     post: operations["verify"];
   };
-  "/api/v1/users/{userId}/verification/send": {
-    post: operations["sendVerificationCode"];
+  "/api/v1/users/verification/request": {
+    post: operations["requestVerification"];
   };
   "/api/v1/users/register": {
     post: operations["register"];
+  };
+  "/api/v1/users/password/reset": {
+    post: operations["resetPassword"];
+  };
+  "/api/v1/users/password/reset/request": {
+    post: operations["requestPasswordReset"];
   };
   "/api/v1/trips": {
     get: operations["getAllTrips"];
@@ -294,8 +300,11 @@ export interface components {
       /** Format: date-time */
       publishedAt?: string;
     };
-    VerificationCodeRequest: {
-      code: string;
+    VerifyEmailRequest: {
+      token?: string;
+    };
+    RequestEmailVerification: {
+      email: string;
     };
     UserCreateRequest: {
       /** Format: email */
@@ -314,6 +323,14 @@ export interface components {
       profile?: components["schemas"]["ProfileSummary"];
       /** Format: date-time */
       registeredAt?: string;
+    };
+    ResetPasswordRequest: {
+      token: string;
+      newPassword: string;
+    };
+    RequestPasswordReset: {
+      /** Format: email */
+      email: string;
     };
     TripCreateRequest: {
       departureAddress: components["schemas"]["AddressRequest"];
@@ -549,7 +566,7 @@ export interface components {
       /** Format: uuid */
       notificationId?: string;
       /** @enum {string} */
-      type?: "VERIFY_USER" | "USER_CREATED" | "MESSAGE_RECEIVED" | "REQUEST_RECEIVED" | "BOOKING_CREATED" | "BOOKING_CANCELED" | "BOOKING_COMPLETED" | "BOOKING_PAID" | "TRIP_CANCELLED" | "PARCEL_DELIVERED";
+      type?: "VERIFY_USER" | "RESET_PASSWORD" | "USER_CREATED" | "MESSAGE_RECEIVED" | "REQUEST_RECEIVED" | "BOOKING_CREATED" | "BOOKING_CANCELED" | "BOOKING_COMPLETED" | "BOOKING_PAID" | "TRIP_CANCELLED" | "PARCEL_DELIVERED";
       /** Format: uuid */
       referenceId?: string;
       isRead?: boolean;
@@ -761,14 +778,9 @@ export interface operations {
     };
   };
   verify: {
-    parameters: {
-      path: {
-        userId: string;
-      };
-    };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["VerificationCodeRequest"];
+        "application/json": components["schemas"]["VerifyEmailRequest"];
       };
     };
     responses: {
@@ -778,10 +790,10 @@ export interface operations {
       };
     };
   };
-  sendVerificationCode: {
-    parameters: {
-      path: {
-        userId: string;
+  requestVerification: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RequestEmailVerification"];
       };
     };
     responses: {
@@ -803,6 +815,32 @@ export interface operations {
         content: {
           "*/*": components["schemas"]["UserDetails"];
         };
+      };
+    };
+  };
+  resetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  requestPasswordReset: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RequestPasswordReset"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };
@@ -998,7 +1036,9 @@ export interface operations {
     responses: {
       /** @description OK */
       200: {
-        content: never;
+        content: {
+          "*/*": components["schemas"]["UserDetails"];
+        };
       };
     };
   };
@@ -1019,7 +1059,9 @@ export interface operations {
     responses: {
       /** @description OK */
       200: {
-        content: never;
+        content: {
+          "*/*": components["schemas"]["UserDetails"];
+        };
       };
     };
   };

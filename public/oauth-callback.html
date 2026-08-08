@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Connexion...</title>
+    <style>
+        body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background: #fffcfb; font-family: sans-serif; color: #8a6a5c; }
+    </style>
+</head>
+<body>
+    Connexion en cours...
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        window.opener.postMessage(
+            {
+                type: "oauth-callback",
+                status: params.get("status"),
+                reason: params.get("reason"),
+            },
+            window.location.origin
+        );
+        window.close();
+    </script>
+</body>
+</html>

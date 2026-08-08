@@ -3,7 +3,7 @@ import Spinner from "../../components/spinner/Spinner";
 import styles from "./Button.module.css"
 
 type Size = "sm" | "md" | "lg";
-type Variant = "main" | "secondary" | "ghost";
+type Variant = "main" | "secondary" | "ghost" | "danger";
 
 type ButtonProps = {
     label: string;

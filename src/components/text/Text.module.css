@@ -38,6 +38,20 @@
 .slideLeft   { animation-name: slideLeft; }
 .slideRight  { animation-name: slideRight; }
 
+/* --- Icon --- */
+
+.withIcon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }

@@ -1,15 +1,22 @@
 import api from "../config/axios.config";
-import type { AuthRequest } from "../types";
+import type { AuthRequest, UserDetails } from "../types";
 
 const authService = {
 
-    async login(credentials: AuthRequest): Promise<void> {
-        await api.post("/auth/login", credentials)
+    async login(credentials: AuthRequest): Promise<UserDetails> {
+        const res = await api.post<UserDetails>("/auth/login", credentials);
+        return res.data;
+    },
+
+    async refresh(): Promise<UserDetails> {
+        const res = await api.post<UserDetails>("/auth/refresh");
+        return res.data;
     },
 
     async logout(): Promise<void> {
-        await api.post("/auth/logout")
-    }
-}
+        await api.post("/auth/logout");
+    },
+
+};
 
 export default authService;
