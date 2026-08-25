@@ -1,0 +1,186 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-height: 96px;
+    padding: 28px 24px;
+    box-sizing: border-box;
+    background: var(--color-cream);
+    border: 1px solid color-mix(in srgb, var(--color-taupe) 12%, transparent);
+    border-radius: 16px;
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--color-espresso) 8%, transparent);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    animation: row-in 0.3s ease both;
+}
+
+.container:hover {
+    box-shadow: 0 10px 22px color-mix(in srgb, var(--color-espresso) 14%, transparent);
+    transform: translateY(-1px);
+}
+
+.status {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--color-surface);
+    border-radius: 100px;
+    color: var(--color-taupe);
+}
+
+.status svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5px;
+    flex-shrink: 0;
+}
+
+/* ---------- info (route + details stacked) ---------- */
+.info {
+    min-width: 0;
+    flex: 1;
+}
+
+.route {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.point {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.point_label {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.point_text {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.route_divider {
+    flex: 1;
+    min-width: 60px;
+}
+
+.route_divider_vertical {
+    display: none;
+}
+
+/* ---------- details (price / weight / instant / stops) ---------- */
+.details {
+    flex-wrap: nowrap;
+    min-width: 0;
+}
+
+/* ---------- actions ---------- */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* ---------- motion ---------- */
+@keyframes row-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+    .container {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .status {
+        order: -2;
+    }
+
+    .info {
+        min-width: 100%;
+        order: -1;
+        flex: 1 1 100%;
+    }
+
+    .section_divider {
+        display: none;
+    }
+
+    .details {
+        flex-wrap: nowrap;
+        overflow: hidden;
+        width: 100%;
+        gap: 6px;
+    }
+
+    .buttons {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .route {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .point {
+        flex: none;
+        width: 100%;
+    }
+
+    .route_divider_horizontal {
+        display: none;
+    }
+
+    .route_divider_vertical {
+        display: flex;
+        flex: none;
+        min-width: 0;
+        height: 24px;
+        align-self: center;
+    }
+
+    .buttons {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .buttons .link {
+        flex: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        animation: none;
+        transition: none;
+    }
+    .container:hover {
+        transform: none;
+    }
+}

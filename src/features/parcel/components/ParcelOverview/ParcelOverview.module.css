@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--color-cream);
+    border: 1px solid color-mix(in srgb, var(--color-taupe) 12%, transparent);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--color-espresso) 12%, transparent);
+}
+
+.container > :first-child {
+    aspect-ratio: 4 / 3;
+}
+
+.details_container {
+    padding: 0 20px 20px;
+}
