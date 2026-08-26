@@ -3,7 +3,6 @@ import { ChevronDown, Circle, MapPin } from "lucide-react";
 import styles from "./TripItinerary.module.css";
 import Text from "@/shared/components/text/Text.tsx";
 import Button from "@/shared/components/button/Button.tsx";
-import Divider from "@/shared/components/divider/Divider.tsx";
 import { addressToBriefString } from "@/shared/utils/addressToString.ts";
 import formatDate from "@/shared/utils/formatDate.ts";
 import type { Address, TripStopDto } from "@/shared/types";
@@ -95,7 +94,13 @@ function BriefItinerary({ departure, arrival, departureDate, arrivalDate, stopCo
                 )}
             </div>
 
-            <Divider className={styles.briefDivider} text={countText} />
+            <div className={styles.routeLine}>
+                <span className={styles.routeDot} />
+                <span className={styles.routeTrack} />
+                {countText && <span className={styles.routeStops}>{countText}</span>}
+                <span className={styles.routeTrack} />
+                <span className={styles.routeDot} />
+            </div>
 
             <div className={`${styles.briefPoint} ${styles.briefPointRight}`}>
                 <Text tag="span" muted className={styles.briefLabel}>Arrivée</Text>

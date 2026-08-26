@@ -48,12 +48,6 @@ export interface paths {
     get: operations["getUserReviews"];
     post: operations["create"];
   };
-  "/api/v1/payments/webhook/stripe": {
-    post: operations["handleWebhook"];
-  };
-  "/api/v1/payments/bookings/{bookingId}/checkout": {
-    post: operations["createCheckoutSession"];
-  };
   "/api/v1/parcels": {
     get: operations["getParcels"];
     post: operations["createParcel"];
@@ -69,6 +63,12 @@ export interface paths {
   };
   "/api/v1/conversations/with/{otherUserId}": {
     post: operations["getOrCreateConversation"];
+  };
+  "/api/v1/checkout/webhook/stripe": {
+    post: operations["handleWebhook"];
+  };
+  "/api/v1/checkout/bookings/{bookingId}": {
+    post: operations["createCheckoutSession"];
   };
   "/api/v1/bookings": {
     post: operations["getOrCreateBooking"];
@@ -332,7 +332,7 @@ export interface components {
       /** Format: date */
       departureDate?: string;
       /** Format: date */
-      arrivalDate?: string;w
+      arrivalDate?: string;
       availableWeightKg?: number;
       remainingWeightKg?: number;
       pricePerKg?: components["schemas"]["Price"];
@@ -417,16 +417,6 @@ export interface components {
       /** Format: date-time */
       createdAt?: string;
     };
-    PaymentResponse: {
-      /** Format: uuid */
-      paymentId?: string;
-      /** Format: uuid */
-      bookingId?: string;
-      amount?: components["schemas"]["Price"];
-      /** @enum {string} */
-      status?: "PENDING" | "AUTHORIZED" | "SUCCEEDED" | "FAILED" | "CANCELED" | "REFUNDED";
-      clientSecret?: string;
-    };
     ParcelCreateRequest: {
       title?: string;
       weightKg: number;
@@ -470,6 +460,16 @@ export interface components {
       images?: components["schemas"]["MessageImageDto"][];
       /** Format: date-time */
       sentAt?: string;
+    };
+    PaymentResponse: {
+      /** Format: uuid */
+      paymentId?: string;
+      /** Format: uuid */
+      bookingId?: string;
+      amount?: components["schemas"]["Price"];
+      /** @enum {string} */
+      status?: "PENDING" | "AUTHORIZED" | "SUCCEEDED" | "FAILED" | "CANCELED" | "REFUNDED";
+      clientSecret?: string;
     };
     CreateBookingRequest: {
       /** Format: uuid */
@@ -1013,34 +1013,6 @@ export interface operations {
       };
     };
   };
-  handleWebhook: {
-    requestBody: {
-      content: {
-        "application/json": string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  createCheckoutSession: {
-    parameters: {
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PaymentResponse"];
-        };
-      };
-    };
-  };
   getParcels: {
     parameters: {
       query: {
@@ -1132,6 +1104,34 @@ export interface operations {
       200: {
         content: {
           "*/*": components["schemas"]["ConversationDetails"];
+        };
+      };
+    };
+  };
+  handleWebhook: {
+    requestBody: {
+      content: {
+        "application/json": string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  createCheckoutSession: {
+    parameters: {
+      path: {
+        bookingId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "*/*": components["schemas"]["PaymentResponse"];
         };
       };
     };

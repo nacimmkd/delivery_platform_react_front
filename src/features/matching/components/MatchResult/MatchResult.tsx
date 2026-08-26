@@ -1,23 +1,33 @@
 import {ArrowUpRight} from "lucide-react";
-import { Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./MatchResult.module.css"
 import type {MatchResultDto} from "@/shared/types";
 import Divider from "@/shared/components/divider/Divider.tsx";
 import Price from "@/shared/components/price/Price.tsx";
-import { paths } from "@/app/routes/paths.ts";
+import { bookingDetailsPath, paths } from "@/app/routes/paths.ts";
 import UserBrief from "@/features/profile/components/UserBrief/UserBrief.tsx";
 import Button from "@/shared/components/button/Button.tsx";
 import Tag from "@/shared/components/tag/Tag.tsx";
 import TripItinerary from "@/features/trips/components/TripItinerary/TripItinerary.tsx";
+import useCreateBooking from "@/features/booking/hooks/useCreateBooking.ts";
 
 type SearchResultProps = {
     result: MatchResultDto;
+    parcelId: string;
 }
 
-export default function MatchResult({ result }: SearchResultProps) {
+export default function MatchResult({ result, parcelId }: SearchResultProps) {
 
     const { trip, owner, price } = result;
     const instantBooking = trip?.instantBooking;
+    const navigate = useNavigate();
+    const { createBooking, isLoading: isBooking } = useCreateBooking();
+
+    async function handleReserve() {
+        if (!trip?.tripId || !parcelId) return;
+        const booking = await createBooking(trip.tripId, parcelId);
+        if (booking?.bookingId) navigate(bookingDetailsPath(booking.bookingId));
+    }
 
     return (
         <div className={styles.container}>
@@ -54,7 +64,10 @@ export default function MatchResult({ result }: SearchResultProps) {
                         icon={<ArrowUpRight />}
                         iconPosition="right"
                         animate="slideUp"
-                        delay={400}/>
+                        delay={400}
+                        loading={isBooking}
+                        disabled={!trip?.tripId || !parcelId}
+                        onClick={handleReserve}/>
             </div>
         </div>
     )

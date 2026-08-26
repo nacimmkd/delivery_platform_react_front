@@ -19,6 +19,8 @@ type ContainerProps = {
     minHeight?: number | string;
     flex?: string;
     variant?: Variant;
+    stackOnMobile?: boolean;
+    centerOnMobile?: boolean;
     className?: string;
     style?: React.CSSProperties;
 };
@@ -54,10 +56,18 @@ export default function Container({
     minHeight,
     flex,
     variant,
+    stackOnMobile = false,
+    centerOnMobile = false,
     className = "",
     style,
 }: ContainerProps) {
-    const classes = [styles.container, variant ? styles[variant] : "", className].filter(Boolean).join(" ");
+    const classes = [
+        styles.container,
+        variant ? styles[variant] : "",
+        stackOnMobile ? styles.stackOnMobile : "",
+        centerOnMobile ? styles.centerOnMobile : "",
+        className,
+    ].filter(Boolean).join(" ");
 
     const computedStyle: React.CSSProperties = {
         flexDirection: direction,

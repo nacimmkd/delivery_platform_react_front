@@ -7,8 +7,8 @@ interface MatchResultPage {
 
 const matchingService = {
 
-    async match(parcelId: string, date: string): Promise<MatchResultDto[]> {
-        const res = await api.get<MatchResultPage>("/match", { params: { parcelId, date } });
+    async match(parcelId: string, date: string, sort?: string): Promise<MatchResultDto[]> {
+        const res = await api.get<MatchResultPage>("/match", { params: { parcelId, date, sort } });
         return res.data.content ?? [];
     },
 

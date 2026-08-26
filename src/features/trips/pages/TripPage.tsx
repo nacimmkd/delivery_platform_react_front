@@ -28,7 +28,7 @@ export default function TripPage() {
 
     return (
         <Container gap={30} maxWidth={1200} margin="0 auto" padding={20}>
-            <Container direction="row" align="center" justify="space-between" gap={30}>
+            <Container direction="row" align="center" justify="space-between" gap={30} stackOnMobile>
                 <Container gap={5}>
                     <Text tag="h1" weight="bold" size={2.5}>Mes Trajets</Text>
                     <Text tag="p">
@@ -38,7 +38,7 @@ export default function TripPage() {
                 <Button to={paths.trip_create} label="Proposer un trajet" variant="main" icon={<PlusIcon />} style={{ flexShrink: 0 }} />
             </Container>
             <Container gap={32} align="start">
-                <Container direction="row" align="center" gap={10} wrap>
+                <Container direction="row" align="center" gap={10} wrap centerOnMobile>
                     {FILTERS.map(({ key, label }) => (
                         <Button
                             key={key}

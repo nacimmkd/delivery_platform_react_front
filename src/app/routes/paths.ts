@@ -14,6 +14,8 @@ export const paths = {
     trip_edit: "/trips/:id/edit",
     profile: "/profile",
     search: "/matching",
+    booking_details: "/bookings/:id",
+    booking_payment: "/bookings/:id/payment",
 
 } as const;
 
@@ -29,4 +31,12 @@ export function tripDetailsPath(id: string): string {
 
 export function tripEditPath(id: string): string {
     return `/trips/${id}/edit`;
+}
+
+export function bookingDetailsPath(id: string): string {
+    return `/bookings/${id}`;
+}
+
+export function bookingPaymentPath(id: string): string {
+    return `/bookings/${id}/payment`;
 }

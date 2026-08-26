@@ -97,10 +97,39 @@
     font-size: clamp(0.65rem, 2.2vw, 0.75rem);
 }
 
-.briefDivider {
+.routeLine {
+    display: flex;
+    align-items: center;
     flex: 1;
     min-width: 32px;
+}
+
+.routeTrack {
+    flex: 1;
+    height: 2px;
+    min-width: 8px;
+    background: color-mix(in srgb, var(--color-ink) 22%, transparent);
+}
+
+.routeDot {
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-ink);
+}
+
+.routeStops {
+    flex-shrink: 0;
+    margin: 0 6px;
+    padding: 3px 10px;
+    background: var(--color-cream);
+    border: 1px solid color-mix(in srgb, var(--color-taupe) 30%, transparent);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-style: italic;
     color: var(--color-taupe);
+    white-space: nowrap;
 }
 
 .stopsCount {

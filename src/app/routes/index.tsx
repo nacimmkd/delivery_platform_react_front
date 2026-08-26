@@ -16,6 +16,8 @@ import EditTripPage from "@/features/trips/pages/EditTripPage.tsx";
 import TripPage from "@/features/trips/pages/TripPage.tsx";
 import TripDetailsPage from "@/features/trips/pages/TripDetailsPage.tsx";
 import MatchingPage from "@/features/matching/pages/MatchingPage.tsx";
+import BookingDetailsPage from "@/features/booking/pages/BookingDetailsPage.tsx";
+import PaymentPage from "@/features/payments/pages/PaymentPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +42,8 @@ export const router = createBrowserRouter([
                     { path: paths.trip_details, element: <TripDetailsPage/>},
                     { path: paths.profile, element: <div>Profile</div> },
                     { path: paths.search, element: <MatchingPage/> },
+                    { path: paths.booking_details, element: <BookingDetailsPage/> },
+                    { path: paths.booking_payment, element: <PaymentPage/> },
                 ],
             },
         ]

@@ -10,27 +10,32 @@ import SelectItem from "@/shared/components/select/SelectItem.tsx";
 import useMatching from "@/features/matching/hooks/useMatching.ts";
 import MatchResult from "@/features/matching/components/MatchResult/MatchResult.tsx";
 import Container from "@/shared/components/container/Container.tsx"
-import type { MatchResultDto } from "@/shared/types";
 
 type SortBy = "match" | "price" | "driver_score";
 
-const SORTERS: Record<SortBy, (a: MatchResultDto, b: MatchResultDto) => number> = {
-    match: (a, b) => (b.score ?? 0) - (a.score ?? 0),
-    price: (a, b) => (a.price?.amountInCents ?? 0) - (b.price?.amountInCents ?? 0),
-    driver_score: (a, b) => (b.owner?.avgRating ?? 0) - (a.owner?.avgRating ?? 0),
+const SORT_PARAMS: Record<SortBy, string> = {
+    match: "score,desc",
+    price: "price.amountInCents,asc",
+    driver_score: "owner.avgRating,desc",
 };
 
 export default function MatchingPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const { search, matches, isLoading, error, hasSearched } = useMatching();
     const [sortBy, setSortBy] = useState<SortBy>("match");
+    const [date, setDate] = useState("");
 
     const parcelId = searchParams.get("parcelId") ?? "";
-    const sortedMatches = [...matches].sort(SORTERS[sortBy]);
 
     function handleSearch(date: string) {
         setSearchParams({ parcelId });
-        void search(parcelId, date);
+        setDate(date);
+        void search(parcelId, date, SORT_PARAMS[sortBy]);
+    }
+
+    function handleSortChange(value: SortBy) {
+        setSortBy(value);
+        if (date) void search(parcelId, date, SORT_PARAMS[value]);
     }
 
     return (
@@ -73,7 +78,7 @@ export default function MatchingPage() {
                                 id="sortBy"
                                 value={sortBy}
                                 variant="pill"
-                                onChange={(value) => setSortBy(value as SortBy)}
+                                onChange={(value) => handleSortChange(value as SortBy)}
                             >
                                 <SelectItem value="match">Meilleur match</SelectItem>
                                 <SelectItem value="price">Prix</SelectItem>
@@ -83,8 +88,8 @@ export default function MatchingPage() {
                     </div>
 
                     <div className={styles.results_container}>
-                        {sortedMatches.map((match, i) => (
-                            match && <MatchResult key={i} result={match}/>
+                        {matches.map((match, i) => (
+                            match && <MatchResult key={i} result={match} parcelId={parcelId}/>
                         ))}
                     </div>
                 </>
