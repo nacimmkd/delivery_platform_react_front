@@ -17,7 +17,6 @@ const STEPS: { key: NonNullable<ParcelSummary["state"]>; label: string }[] = [
     { key: "PUBLISHED", label: "Publié" },
     { key: "BOOKED", label: "Réservé" },
     { key: "PICKED_UP", label: "Récupéré" },
-    { key: "IN_TRANSIT", label: "En transit" },
     { key: "DELIVERED", label: "Livré" },
 ];
 
@@ -34,7 +33,8 @@ export default function ParcelTracking({ state, pickup, dropoff, publishedAt }: 
         );
     }
 
-    const currentIndex = STEPS.findIndex((step) => step.key === state);
+    const effectiveState = state === "IN_TRANSIT" ? "PICKED_UP" : state;
+    const currentIndex = STEPS.findIndex((step) => step.key === effectiveState);
 
     return (
         <div className={styles.container}>

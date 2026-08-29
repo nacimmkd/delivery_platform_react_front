@@ -3,1627 +3,2824 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/api/v1/users/me/password": {
-    put: operations["updatePassword"];
-  };
-  "/api/v1/trips/{id}": {
-    get: operations["getTrip"];
-    put: operations["updateTrip"];
-    delete: operations["deleteTrip"];
-  };
-  "/api/v1/profile/me": {
-    get: operations["getMyProfile"];
-    put: operations["updateProfile"];
-  };
-  "/api/v1/parcels/{id}": {
-    get: operations["getParcel"];
-    put: operations["updateParcel"];
-    delete: operations["deleteParcel"];
-  };
-  "/api/v1/users/verification/verify": {
-    post: operations["verify"];
-  };
-  "/api/v1/users/verification/request": {
-    post: operations["requestVerification"];
-  };
-  "/api/v1/users/register": {
-    post: operations["register"];
-  };
-  "/api/v1/users/password/reset": {
-    post: operations["resetPassword"];
-  };
-  "/api/v1/users/password/reset/request": {
-    post: operations["requestPasswordReset"];
-  };
-  "/api/v1/trips": {
-    get: operations["getAllTrips"];
-    post: operations["createTrip"];
-  };
-  "/api/v1/trips/{tripId}/stops": {
-    post: operations["addStop"];
-  };
-  "/api/v1/reviews": {
-    get: operations["getUserReviews"];
-    post: operations["create"];
-  };
-  "/api/v1/parcels": {
-    get: operations["getParcels"];
-    post: operations["createParcel"];
-  };
-  "/api/v1/parcels/{parcelId}/images": {
-    post: operations["addParcelImage"];
-  };
-  "/api/v1/images/presign": {
-    post: operations["getPresignUrl"];
-  };
-  "/api/v1/geocoding/geocode": {
-    post: operations["geocode"];
-  };
-  "/api/v1/conversations/with/{otherUserId}": {
-    post: operations["getOrCreateConversation"];
-  };
-  "/api/v1/checkout/webhook/stripe": {
-    post: operations["handleWebhook"];
-  };
-  "/api/v1/checkout/bookings/{bookingId}": {
-    post: operations["createCheckoutSession"];
-  };
-  "/api/v1/bookings": {
-    post: operations["getOrCreateBooking"];
-  };
-  "/api/v1/auth/refresh": {
-    post: operations["refresh"];
-  };
-  "/api/v1/auth/logout": {
-    post: operations["logout"];
-  };
-  "/api/v1/auth/login": {
-    post: operations["login"];
-  };
-  "/api/v1/notifications/{id}/read": {
-    patch: operations["markAsRead"];
-  };
-  "/api/v1/conversations/{conversationId}/read": {
-    patch: operations["markAsRead_1"];
-  };
-  "/api/v1/bookings/{bookingId}/reject": {
-    patch: operations["rejectBooking"];
-  };
-  "/api/v1/bookings/{bookingId}/confirm-pickup": {
-    patch: operations["confirmPickUp"];
-  };
-  "/api/v1/bookings/{bookingId}/complete": {
-    patch: operations["complete"];
-  };
-  "/api/v1/bookings/{bookingId}/cancel": {
-    patch: operations["cancel"];
-  };
-  "/api/v1/bookings/{bookingId}/accept": {
-    patch: operations["acceptBooking"];
-  };
-  "/api/v1/users": {
-    get: operations["getAllUsers"];
-  };
-  "/api/v1/users/{id}": {
-    get: operations["getUserById"];
-  };
-  "/api/v1/trips/{tripId}/bookings": {
-    get: operations["getTripBookings"];
-  };
-  "/api/v1/trips/me": {
-    get: operations["getMyTrips"];
-  };
-  "/api/v1/reviews/me": {
-    get: operations["getReviewsMe"];
-  };
-  "/api/v1/profile/{profileId}": {
-    get: operations["getProfileById"];
-  };
-  "/api/v1/parcels/{parcelId}/tracking": {
-    get: operations["getTrackingEvents"];
-  };
-  "/api/v1/parcels/{parcelId}/bookings": {
-    get: operations["getParcelBookings"];
-  };
-  "/api/v1/parcels/me": {
-    get: operations["getMyParcels"];
-  };
-  "/api/v1/notifications": {
-    get: operations["getMyNotifications"];
-  };
-  "/api/v1/notifications/{notifId}": {
-    get: operations["getNotificationByID"];
-  };
-  "/api/v1/match": {
-    get: operations["getMatchingTrips"];
-  };
-  "/api/v1/conversations": {
-    get: operations["getMyConversations"];
-  };
-  "/api/v1/conversations/{conversationId}": {
-    get: operations["getConversationDetails"];
-  };
-  "/api/v1/conversations/{conversationId}/unread-count": {
-    get: operations["getUnreadCount"];
-  };
-  "/api/v1/bookings/{bookingId}": {
-    get: operations["getBooking"];
-  };
-  "/api/v1/bookings/me/sent": {
-    get: operations["getMySentBookings"];
-  };
-  "/api/v1/bookings/me/received": {
-    get: operations["getMyReceivedBookings"];
-  };
-  "/api/v1/auth/me": {
-    get: operations["getMe"];
-  };
-  "/api/v1/users/me": {
-    delete: operations["deleteMe"];
-  };
-  "/api/v1/trips/{tripId}/stops/{stopId}": {
-    delete: operations["deleteTripStop"];
-  };
-  "/api/v1/reviews/{id}": {
-    delete: operations["remove"];
-  };
-  "/api/v1/parcels/{parcelId}/images/{imageId}": {
-    delete: operations["removeParcelImage"];
-  };
-  "/api/v1/notifications/{id}": {
-    delete: operations["delete"];
-  };
+    "/api/v1/users/me/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["updatePassword"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getTrip"];
+        put: operations["updateTrip"];
+        post?: never;
+        delete: operations["deleteTrip"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profile/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["updateProfile"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getParcel"];
+        put: operations["updateParcel"];
+        post?: never;
+        delete: operations["deleteParcel"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/verification/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["verify"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/verification/request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["requestVerification"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["register"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/password/reset": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["resetPassword"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/password/reset/request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["requestPasswordReset"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAllTrips"];
+        put?: never;
+        post: operations["createTrip"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips/{tripId}/stops": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["addStop"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reviews": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserReviews"];
+        put?: never;
+        post: operations["create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getParcels"];
+        put?: never;
+        post: operations["createParcel"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels/{parcelId}/images": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["addParcelImage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/images/presign": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["getPresignUrl"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/geocoding/geocode": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["geocode"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conversations/with/{otherUserId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["getOrCreateConversation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/checkout/webhook/stripe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["handleWebhook"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/checkout/bookings/{bookingId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["createCheckoutSession"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/bookings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["getOrCreateBooking"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["refresh"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["logout"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["login"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/{id}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["markAsRead"];
+        trace?: never;
+    };
+    "/api/v1/conversations/{conversationId}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["markAsRead_1"];
+        trace?: never;
+    };
+    "/api/v1/bookings/{bookingId}/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["rejectBooking"];
+        trace?: never;
+    };
+    "/api/v1/bookings/{bookingId}/confirm-pickup": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["confirmPickUp"];
+        trace?: never;
+    };
+    "/api/v1/bookings/{bookingId}/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["complete"];
+        trace?: never;
+    };
+    "/api/v1/bookings/{bookingId}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["cancel"];
+        trace?: never;
+    };
+    "/api/v1/bookings/{bookingId}/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["acceptBooking"];
+        trace?: never;
+    };
+    "/api/v1/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAllUsers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips/{tripId}/requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getTripRequests"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips/{tripId}/bookings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getTripBookings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMyTrips"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reviews/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getReviewsMe"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/profile/{profileId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getProfileById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels/{parcelId}/tracking": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getTrackingEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels/{parcelId}/bookings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getParcelBookings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMyParcels"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMyNotifications"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/{notifId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getNotificationByID"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/match": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMatchingTrips"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conversations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMyConversations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conversations/{conversationId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getConversationDetails"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conversations/{conversationId}/unread-count": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUnreadCount"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/bookings/{bookingId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getBooking"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/bookings/me/sent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMySentBookings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/bookings/me/received": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMyReceivedBookings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getMe"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deleteMe"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trips/{tripId}/stops/{stopId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deleteTripStop"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reviews/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["remove"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/parcels/{parcelId}/images/{imageId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["removeParcelImage"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
 export type webhooks = Record<string, never>;
-
 export interface components {
-  schemas: {
-    UpdatePasswordRequest: {
-      currentPassword: string;
-      newPassword: string;
+    schemas: {
+        UpdatePasswordRequest: {
+            currentPassword: string;
+            newPassword: string;
+        };
+        AddressRequest: {
+            street: string;
+            city: string;
+            postalCode: string;
+            country: string;
+        };
+        Price: {
+            /** Format: int64 */
+            amountInCents?: number;
+            currency: string;
+        };
+        TripUpdateRequest: {
+            departureAddress?: components["schemas"]["AddressRequest"];
+            arrivalAddress?: components["schemas"]["AddressRequest"];
+            /** Format: date */
+            departureDate: string;
+            /** Format: date */
+            arrivalDate: string;
+            availableWeightKg: number;
+            pricePerKg: components["schemas"]["Price"];
+            instantBooking: boolean;
+            maxDetourKm: number;
+            notes: string;
+        };
+        Address: {
+            street?: string;
+            city?: string;
+            postalCode?: string;
+            country?: string;
+            /** Format: double */
+            latitude?: number;
+            /** Format: double */
+            longitude?: number;
+        };
+        TripDetails: {
+            /** Format: uuid */
+            tripId?: string;
+            departureAddress?: components["schemas"]["Address"];
+            arrivalAddress?: components["schemas"]["Address"];
+            /** Format: date */
+            departureDate?: string;
+            /** Format: date */
+            arrivalDate?: string;
+            availableWeightKg?: number;
+            remainingWeightKg?: number;
+            pricePerKg?: components["schemas"]["Price"];
+            estimatedEarning?: components["schemas"]["Price"];
+            instantBooking?: boolean;
+            maxDetourKm?: number;
+            /** @enum {string} */
+            state?: "PUBLISHED" | "ACTIVE" | "FULL" | "EXPIRED" | "COMPLETED" | "CANCELLED";
+            notes?: string;
+            stops?: components["schemas"]["TripStopDto"][];
+            /** Format: int64 */
+            newRequestCount?: number;
+            /** Format: int64 */
+            acceptedBookingsCount?: number;
+            /** Format: date-time */
+            publishedAt?: string;
+        };
+        TripStopDto: {
+            /** Format: uuid */
+            id?: string;
+            /** Format: int32 */
+            order?: number;
+            address?: components["schemas"]["Address"];
+        };
+        ProfileUpdateRequest: {
+            firstName: string;
+            lastName: string;
+            phone?: string;
+            country: string;
+            avatarKey?: string;
+        };
+        ProfileDto: {
+            /** Format: uuid */
+            profileId?: string;
+            firstName?: string;
+            lastName?: string;
+            phone?: string;
+            phoneVisible?: boolean;
+            country?: string;
+            avgRating?: number;
+            /** Format: int32 */
+            reviewCount?: number;
+            /** Format: int32 */
+            completedTrips?: number;
+            /** Format: int32 */
+            sentParcels?: number;
+            avatarUrl?: string;
+        };
+        ParcelUpdateRequest: {
+            title?: string;
+            weightKg: number;
+            /** @enum {string} */
+            size: "S" | "M" | "L" | "XL" | "XXL";
+            fragile: boolean;
+            pickupAddress?: components["schemas"]["AddressRequest"];
+            dropoffAddress?: components["schemas"]["AddressRequest"];
+        };
+        ParcelBookingDto: {
+            /** Format: uuid */
+            bookingId?: string;
+            trip?: components["schemas"]["TripSummary"];
+            carrier?: components["schemas"]["ProfileBrief"];
+            price?: components["schemas"]["Price"];
+            /** @enum {string} */
+            state?: "PENDING" | "WAITING_FOR_ANSWER" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "COMPLETED";
+            pickupCode?: string;
+            dropOffCode?: string;
+            pickupDetourKm?: number;
+            dropOffDetourKm?: number;
+            rejectionReason?: string;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            respondedAt?: string;
+            /** Format: date-time */
+            completedAt?: string;
+            /** Format: date-time */
+            cancelledAt?: string;
+        };
+        ParcelDetails: {
+            parcel?: components["schemas"]["ParcelSummary"];
+            bookings?: components["schemas"]["ParcelBookingDto"][];
+        };
+        ParcelImageDto: {
+            /** Format: uuid */
+            id?: string;
+            url?: string;
+            content?: string;
+            /** Format: date-time */
+            uploadedAt?: string;
+        };
+        ParcelSummary: {
+            /** Format: uuid */
+            parcelId?: string;
+            title?: string;
+            weightKg?: number;
+            /** @enum {string} */
+            size?: "S" | "M" | "L" | "XL" | "XXL";
+            fragile?: boolean;
+            pickup?: components["schemas"]["Address"];
+            dropoff?: components["schemas"]["Address"];
+            /** @enum {string} */
+            state?: "PUBLISHED" | "BOOKED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
+            images?: components["schemas"]["ParcelImageDto"][];
+            /** Format: date-time */
+            publishedAt?: string;
+        };
+        ProfileBrief: {
+            /** Format: uuid */
+            userId?: string;
+            firstName?: string;
+            lastName?: string;
+            avgRating?: number;
+            /** Format: int32 */
+            reviewCount?: number;
+            avatarUrl?: string;
+            verified?: boolean;
+        };
+        TripSummary: {
+            /** Format: uuid */
+            tripId?: string;
+            departure?: components["schemas"]["Address"];
+            arrival?: components["schemas"]["Address"];
+            /** Format: date */
+            departureDate?: string;
+            /** Format: date */
+            arrivalDate?: string;
+            availableWeightKg?: number;
+            remainingWeightKg?: number;
+            pricePerKg?: components["schemas"]["Price"];
+            instantBooking?: boolean;
+            /** @enum {string} */
+            state?: "PUBLISHED" | "ACTIVE" | "FULL" | "EXPIRED" | "COMPLETED" | "CANCELLED";
+            /** Format: int32 */
+            stopCount?: number;
+            /** Format: date-time */
+            publishedAt?: string;
+        };
+        VerifyEmailRequest: {
+            token?: string;
+        };
+        RequestEmailVerification: {
+            email: string;
+        };
+        UserCreateRequest: {
+            /** Format: email */
+            email: string;
+            password: string;
+            firstName: string;
+            lastName: string;
+        };
+        UserDetails: {
+            /** Format: uuid */
+            userId?: string;
+            email?: string;
+            /** @enum {string} */
+            role?: "USER" | "ADMIN";
+            emailVerified?: boolean;
+            /** Format: date-time */
+            registeredAt?: string;
+            profile?: components["schemas"]["ProfileDto"];
+        };
+        ResetPasswordRequest: {
+            token: string;
+            newPassword: string;
+        };
+        RequestPasswordReset: {
+            /** Format: email */
+            email: string;
+        };
+        TripCreateRequest: {
+            departureAddress: components["schemas"]["AddressRequest"];
+            arrivalAddress: components["schemas"]["AddressRequest"];
+            /** Format: date */
+            departureDate: string;
+            /** Format: date */
+            arrivalDate: string;
+            availableWeightKg?: number;
+            pricePerKg: components["schemas"]["Price"];
+            instantBooking: boolean;
+            maxDetourKm: number;
+            notes?: string;
+        };
+        CreateReviewRequest: {
+            /** Format: uuid */
+            bookingId: string;
+            /** Format: int32 */
+            rating: number;
+            comment?: string;
+        };
+        ReviewDto: {
+            /** Format: uuid */
+            id?: string;
+            reviewer?: components["schemas"]["ProfileBrief"];
+            /** Format: int32 */
+            rating?: number;
+            comment?: string;
+            /** Format: date-time */
+            createdAt?: string;
+        };
+        ParcelCreateRequest: {
+            title?: string;
+            weightKg: number;
+            /** @enum {string} */
+            size: "S" | "M" | "L" | "XL" | "XXL";
+            fragile?: boolean;
+            pickupAddress: components["schemas"]["AddressRequest"];
+            dropoffAddress: components["schemas"]["AddressRequest"];
+        };
+        ParcelImageRequest: {
+            key: string;
+            contentType: string;
+        };
+        PresignedUrl: {
+            url?: string;
+            key?: string;
+            /** Format: date-time */
+            expiresAt?: string;
+        };
+        ConversationDetails: {
+            /** Format: uuid */
+            conversationId?: string;
+            participants?: components["schemas"]["ProfileBrief"][];
+            messages?: components["schemas"]["MessageSummary"][];
+            /** Format: date-time */
+            createdAt?: string;
+        };
+        MessageImageDto: {
+            /** Format: uuid */
+            id?: string;
+            url?: string;
+            content?: string;
+            /** Format: date-time */
+            uploadedAt?: string;
+        };
+        MessageSummary: {
+            /** Format: uuid */
+            messageId?: string;
+            sender?: components["schemas"]["ProfileBrief"];
+            content?: string;
+            images?: components["schemas"]["MessageImageDto"][];
+            /** Format: date-time */
+            sentAt?: string;
+        };
+        PaymentResponse: {
+            /** Format: uuid */
+            paymentId?: string;
+            /** Format: uuid */
+            bookingId?: string;
+            amount?: components["schemas"]["Price"];
+            /** @enum {string} */
+            status?: "PENDING" | "AUTHORIZED" | "SUCCEEDED" | "FAILED" | "CANCELED" | "REFUNDED";
+            clientSecret?: string;
+        };
+        CreateBookingRequest: {
+            /** Format: uuid */
+            tripId: string;
+            /** Format: uuid */
+            parcelId: string;
+        };
+        BookingDto: {
+            /** Format: uuid */
+            bookingId?: string;
+            trip?: components["schemas"]["TripSummary"];
+            parcel?: components["schemas"]["ParcelSummary"];
+            sender?: components["schemas"]["ProfileBrief"];
+            carrier?: components["schemas"]["ProfileBrief"];
+            price?: components["schemas"]["Price"];
+            /** @enum {string} */
+            state?: "PENDING" | "WAITING_FOR_ANSWER" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "COMPLETED";
+            pickupDetourKm?: number;
+            dropOffDetourKm?: number;
+            rejectionReason?: string;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            respondedAt?: string;
+            /** Format: date-time */
+            completedAt?: string;
+            /** Format: date-time */
+            cancelledAt?: string;
+        };
+        AuthRequest: {
+            /** Format: email */
+            email: string;
+            password: string;
+        };
+        UserSummary: {
+            /** Format: uuid */
+            userId?: string;
+            email?: string;
+            /** @enum {string} */
+            role?: "USER" | "ADMIN";
+            emailVerified?: boolean;
+            /** Format: date-time */
+            registeredAt?: string;
+        };
+        Pageable: {
+            /** Format: int32 */
+            page?: number;
+            /** Format: int32 */
+            size?: number;
+            sort?: string[];
+        };
+        PageTripSummary: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["TripSummary"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
+        PageableObject: {
+            paged?: boolean;
+            /** Format: int32 */
+            pageNumber?: number;
+            /** Format: int32 */
+            pageSize?: number;
+            /** Format: int64 */
+            offset?: number;
+            sort?: components["schemas"]["SortObject"];
+            unpaged?: boolean;
+        };
+        SortObject: {
+            sorted?: boolean;
+            empty?: boolean;
+            unsorted?: boolean;
+        };
+        PageTripBookingDto: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["TripBookingDto"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
+        TripBookingDto: {
+            /** Format: uuid */
+            bookingId?: string;
+            parcel?: components["schemas"]["ParcelSummary"];
+            sender?: components["schemas"]["ProfileBrief"];
+            price?: components["schemas"]["Price"];
+            /** @enum {string} */
+            state?: "PENDING" | "WAITING_FOR_ANSWER" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "COMPLETED";
+            pickupDetourKm?: number;
+            dropOffDetourKm?: number;
+            rejectionReason?: string;
+            /** Format: date-time */
+            createdAt?: string;
+            /** Format: date-time */
+            respondedAt?: string;
+            /** Format: date-time */
+            completedAt?: string;
+            /** Format: date-time */
+            cancelledAt?: string;
+        };
+        PageReviewDto: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["ReviewDto"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
+        PageParcelSummary: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["ParcelSummary"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
+        TrackEventDto: {
+            /** Format: uuid */
+            id?: string;
+            /** @enum {string} */
+            state?: "PUBLISHED" | "BOOKED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
+            note?: string;
+            /** Format: date-time */
+            occurredAt?: string;
+        };
+        PageParcelBookingDto: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["ParcelBookingDto"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
+        NotificationDto: {
+            /** Format: uuid */
+            notificationId?: string;
+            /** @enum {string} */
+            type?: "VERIFY_USER" | "RESET_PASSWORD" | "USER_CREATED" | "MESSAGE_RECEIVED" | "REQUEST_RECEIVED" | "BOOKING_CREATED" | "BOOKING_CANCELED" | "BOOKING_COMPLETED" | "BOOKING_PAID" | "TRIP_CANCELLED" | "PARCEL_DELIVERED";
+            /** Format: uuid */
+            referenceId?: string;
+            isRead?: boolean;
+            payload?: {
+                [key: string]: unknown;
+            };
+            /** Format: date-time */
+            createdAt?: string;
+        };
+        MatchResultDto: {
+            trip?: components["schemas"]["TripSummary"];
+            owner?: components["schemas"]["ProfileBrief"];
+            price?: components["schemas"]["Price"];
+            /** Format: double */
+            score?: number;
+        };
+        PageMatchResultDto: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["MatchResultDto"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
+        ConversationSummary: {
+            /** Format: uuid */
+            conversationId?: string;
+            participants?: components["schemas"]["ProfileBrief"][];
+            lastMessage?: components["schemas"]["MessageSummary"];
+            /** Format: date-time */
+            createdAt?: string;
+        };
+        PageBookingDto: {
+            /** Format: int64 */
+            totalElements?: number;
+            /** Format: int32 */
+            totalPages?: number;
+            pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
+            /** Format: int32 */
+            size?: number;
+            content?: components["schemas"]["BookingDto"][];
+            /** Format: int32 */
+            number?: number;
+            sort?: components["schemas"]["SortObject"];
+            /** Format: int32 */
+            numberOfElements?: number;
+            empty?: boolean;
+        };
     };
-    AddressRequest: {
-      street: string;
-      city: string;
-      postalCode: string;
-      country: string;
-    };
-    Price: {
-      /** Format: int64 */
-      amountInCents?: number;
-      currency: string;
-    };
-    TripUpdateRequest: {
-      departureAddress?: components["schemas"]["AddressRequest"];
-      arrivalAddress?: components["schemas"]["AddressRequest"];
-      /** Format: date */
-      departureDate: string;
-      /** Format: date */
-      arrivalDate: string;
-      availableWeightKg: number;
-      pricePerKg: components["schemas"]["Price"];
-      instantBooking: boolean;
-      maxDetourKm: number;
-      notes: string;
-    };
-    Address: {
-      street?: string;
-      city?: string;
-      postalCode?: string;
-      country?: string;
-      /** Format: double */
-      latitude?: number;
-      /** Format: double */
-      longitude?: number;
-    };
-    TripDetails: {
-      /** Format: uuid */
-      tripId?: string;
-      departureAddress?: components["schemas"]["Address"];
-      arrivalAddress?: components["schemas"]["Address"];
-      /** Format: date */
-      departureDate?: string;
-      /** Format: date */
-      arrivalDate?: string;
-      availableWeightKg?: number;
-      remainingWeightKg?: number;
-      pricePerKg?: components["schemas"]["Price"];
-      instantBooking?: boolean;
-      maxDetourKm?: number;
-      /** @enum {string} */
-      state?: "PUBLISHED" | "FULL" | "IN_TRANSIT" | "COMPLETED" | "CANCELLED";
-      notes?: string;
-      stops?: components["schemas"]["TripStopDto"][];
-      /** Format: int64 */
-      newRequestCount?: number;
-      /** Format: int64 */
-      acceptedBookingsCount?: number;
-      /** Format: date-time */
-      publishedAt?: string;
-    };
-    TripStopDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: int32 */
-      order?: number;
-      address?: components["schemas"]["Address"];
-    };
-    ProfileUpdateRequest: {
-      firstName: string;
-      lastName: string;
-      phone: string;
-      country: string;
-      avatarKey?: string;
-    };
-    ProfileSummary: {
-      /** Format: uuid */
-      profileId?: string;
-      firstName?: string;
-      lastName?: string;
-      phone?: string;
-      country?: string;
-      avatarUrl?: string;
-    };
-    ParcelUpdateRequest: {
-      title?: string;
-      weightKg: number;
-      /** @enum {string} */
-      size: "S" | "M" | "L" | "XL" | "XXL";
-      fragile: boolean;
-      pickupAddress?: components["schemas"]["AddressRequest"];
-      dropoffAddress?: components["schemas"]["AddressRequest"];
-    };
-    ParcelBookingDto: {
-      /** Format: uuid */
-      bookingId?: string;
-      trip?: components["schemas"]["TripSummary"];
-      carrier?: components["schemas"]["UserBrief"];
-      price?: components["schemas"]["Price"];
-      /** @enum {string} */
-      state?: "PENDING" | "WAITING_FOR_ANSWER" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "COMPLETED";
-      pickupDetourKm?: number;
-      dropOffDetourKm?: number;
-      rejectionReason?: string;
-      /** Format: date-time */
-      createdAt?: string;
-      /** Format: date-time */
-      respondedAt?: string;
-      /** Format: date-time */
-      completedAt?: string;
-      /** Format: date-time */
-      cancelledAt?: string;
-    };
-    ParcelDetails: {
-      parcel?: components["schemas"]["ParcelSummary"];
-      bookings?: components["schemas"]["ParcelBookingDto"][];
-    };
-    ParcelImageDto: {
-      /** Format: uuid */
-      id?: string;
-      url?: string;
-      content?: string;
-      /** Format: date-time */
-      uploadedAt?: string;
-    };
-    ParcelSummary: {
-      /** Format: uuid */
-      parcelId?: string;
-      title?: string;
-      weightKg?: number;
-      /** @enum {string} */
-      size?: "S" | "M" | "L" | "XL" | "XXL";
-      fragile?: boolean;
-      pickup?: components["schemas"]["Address"];
-      dropoff?: components["schemas"]["Address"];
-      /** @enum {string} */
-      state?: "PUBLISHED" | "BOOKED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
-      images?: components["schemas"]["ParcelImageDto"][];
-      /** Format: date-time */
-      publishedAt?: string;
-    };
-    TripSummary: {
-      /** Format: uuid */
-      tripId?: string;
-      departure?: components["schemas"]["Address"];
-      arrival?: components["schemas"]["Address"];
-      /** Format: date */
-      departureDate?: string;
-      /** Format: date */
-      arrivalDate?: string;
-      availableWeightKg?: number;
-      remainingWeightKg?: number;
-      pricePerKg?: components["schemas"]["Price"];
-      instantBooking?: boolean;
-      /** @enum {string} */
-      state?: "PUBLISHED" | "FULL" | "IN_TRANSIT" | "COMPLETED" | "CANCELLED";
-      /** Format: int32 */
-      stopCount?: number;
-      /** Format: date-time */
-      publishedAt?: string;
-    };
-    UserBrief: {
-      /** Format: uuid */
-      userId?: string;
-      firstName?: string;
-      lastName?: string;
-      avgRating?: number;
-      /** Format: int32 */
-      reviewCount?: number;
-      avatarUrl?: string;
-      verified?: boolean;
-    };
-    VerifyEmailRequest: {
-      token?: string;
-    };
-    RequestEmailVerification: {
-      email: string;
-    };
-    UserCreateRequest: {
-      /** Format: email */
-      email: string;
-      password: string;
-      firstName: string;
-      lastName: string;
-    };
-    UserDetails: {
-      /** Format: uuid */
-      userId?: string;
-      email?: string;
-      /** @enum {string} */
-      role?: "USER" | "ADMIN";
-      verified?: boolean;
-      profile?: components["schemas"]["ProfileSummary"];
-      /** Format: date-time */
-      registeredAt?: string;
-    };
-    ResetPasswordRequest: {
-      token: string;
-      newPassword: string;
-    };
-    RequestPasswordReset: {
-      /** Format: email */
-      email: string;
-    };
-    TripCreateRequest: {
-      departureAddress: components["schemas"]["AddressRequest"];
-      arrivalAddress: components["schemas"]["AddressRequest"];
-      /** Format: date */
-      departureDate: string;
-      /** Format: date */
-      arrivalDate: string;
-      availableWeightKg?: number;
-      pricePerKg: components["schemas"]["Price"];
-      instantBooking: boolean;
-      maxDetourKm: number;
-      notes?: string;
-    };
-    CreateReviewRequest: {
-      /** Format: uuid */
-      bookingId: string;
-      /** Format: int32 */
-      rating: number;
-      comment?: string;
-    };
-    ReviewDto: {
-      /** Format: uuid */
-      id?: string;
-      reviewer?: components["schemas"]["UserBrief"];
-      /** Format: int32 */
-      rating?: number;
-      comment?: string;
-      /** Format: date-time */
-      createdAt?: string;
-    };
-    ParcelCreateRequest: {
-      title?: string;
-      weightKg: number;
-      /** @enum {string} */
-      size: "S" | "M" | "L" | "XL" | "XXL";
-      fragile?: boolean;
-      pickupAddress: components["schemas"]["AddressRequest"];
-      dropoffAddress: components["schemas"]["AddressRequest"];
-    };
-    ParcelImageRequest: {
-      key: string;
-      contentType: string;
-    };
-    PresignedUrl: {
-      url?: string;
-      key?: string;
-      /** Format: date-time */
-      expiresAt?: string;
-    };
-    ConversationDetails: {
-      /** Format: uuid */
-      conversationId?: string;
-      participants?: components["schemas"]["UserBrief"][];
-      messages?: components["schemas"]["MessageSummary"][];
-      /** Format: date-time */
-      createdAt?: string;
-    };
-    MessageImageDto: {
-      /** Format: uuid */
-      id?: string;
-      url?: string;
-      content?: string;
-      /** Format: date-time */
-      uploadedAt?: string;
-    };
-    MessageSummary: {
-      /** Format: uuid */
-      messageId?: string;
-      sender?: components["schemas"]["UserBrief"];
-      content?: string;
-      images?: components["schemas"]["MessageImageDto"][];
-      /** Format: date-time */
-      sentAt?: string;
-    };
-    PaymentResponse: {
-      /** Format: uuid */
-      paymentId?: string;
-      /** Format: uuid */
-      bookingId?: string;
-      amount?: components["schemas"]["Price"];
-      /** @enum {string} */
-      status?: "PENDING" | "AUTHORIZED" | "SUCCEEDED" | "FAILED" | "CANCELED" | "REFUNDED";
-      clientSecret?: string;
-    };
-    CreateBookingRequest: {
-      /** Format: uuid */
-      tripId: string;
-      /** Format: uuid */
-      parcelId: string;
-    };
-    BookingDto: {
-      /** Format: uuid */
-      bookingId?: string;
-      trip?: components["schemas"]["TripSummary"];
-      parcel?: components["schemas"]["ParcelSummary"];
-      sender?: components["schemas"]["UserBrief"];
-      carrier?: components["schemas"]["UserBrief"];
-      price?: components["schemas"]["Price"];
-      /** @enum {string} */
-      state?: "PENDING" | "WAITING_FOR_ANSWER" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "COMPLETED";
-      pickupDetourKm?: number;
-      dropOffDetourKm?: number;
-      rejectionReason?: string;
-      /** Format: date-time */
-      createdAt?: string;
-      /** Format: date-time */
-      respondedAt?: string;
-      /** Format: date-time */
-      completedAt?: string;
-      /** Format: date-time */
-      cancelledAt?: string;
-    };
-    AuthRequest: {
-      /** Format: email */
-      email: string;
-      password: string;
-    };
-    UserSummary: {
-      /** Format: uuid */
-      userId?: string;
-      email?: string;
-      /** @enum {string} */
-      role?: "USER" | "ADMIN";
-      verified?: boolean;
-      /** Format: date-time */
-      registeredAt?: string;
-    };
-    Pageable: {
-      /** Format: int32 */
-      page?: number;
-      /** Format: int32 */
-      size?: number;
-      sort?: string[];
-    };
-    PageTripSummary: {
-      /** Format: int64 */
-      totalElements?: number;
-      /** Format: int32 */
-      totalPages?: number;
-      pageable?: components["schemas"]["PageableObject"];
-      first?: boolean;
-      last?: boolean;
-      /** Format: int32 */
-      size?: number;
-      content?: components["schemas"]["TripSummary"][];
-      /** Format: int32 */
-      number?: number;
-      sort?: components["schemas"]["SortObject"];
-      /** Format: int32 */
-      numberOfElements?: number;
-      empty?: boolean;
-    };
-    PageableObject: {
-      paged?: boolean;
-      /** Format: int32 */
-      pageNumber?: number;
-      /** Format: int32 */
-      pageSize?: number;
-      /** Format: int64 */
-      offset?: number;
-      sort?: components["schemas"]["SortObject"];
-      unpaged?: boolean;
-    };
-    SortObject: {
-      sorted?: boolean;
-      empty?: boolean;
-      unsorted?: boolean;
-    };
-    PageTripBookingDto: {
-      /** Format: int64 */
-      totalElements?: number;
-      /** Format: int32 */
-      totalPages?: number;
-      pageable?: components["schemas"]["PageableObject"];
-      first?: boolean;
-      last?: boolean;
-      /** Format: int32 */
-      size?: number;
-      content?: components["schemas"]["TripBookingDto"][];
-      /** Format: int32 */
-      number?: number;
-      sort?: components["schemas"]["SortObject"];
-      /** Format: int32 */
-      numberOfElements?: number;
-      empty?: boolean;
-    };
-    TripBookingDto: {
-      /** Format: uuid */
-      bookingId?: string;
-      parcel?: components["schemas"]["ParcelSummary"];
-      sender?: components["schemas"]["UserBrief"];
-      price?: components["schemas"]["Price"];
-      /** @enum {string} */
-      state?: "PENDING" | "WAITING_FOR_ANSWER" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "COMPLETED";
-      pickupDetourKm?: number;
-      dropOffDetourKm?: number;
-      rejectionReason?: string;
-      /** Format: date-time */
-      createdAt?: string;
-      /** Format: date-time */
-      respondedAt?: string;
-      /** Format: date-time */
-      completedAt?: string;
-      /** Format: date-time */
-      cancelledAt?: string;
-    };
-    ProfileDetails: {
-      /** Format: uuid */
-      profileId?: string;
-      firstName?: string;
-      lastName?: string;
-      phone?: string;
-      country?: string;
-      avgRating?: number;
-      /** Format: int32 */
-      reviewCount?: number;
-      /** Format: int32 */
-      completedTrips?: number;
-      /** Format: int32 */
-      deliveredParcels?: number;
-      reviews?: components["schemas"]["ReviewDto"][];
-      avatarUrl?: string;
-    };
-    PageParcelSummary: {
-      /** Format: int64 */
-      totalElements?: number;
-      /** Format: int32 */
-      totalPages?: number;
-      pageable?: components["schemas"]["PageableObject"];
-      first?: boolean;
-      last?: boolean;
-      /** Format: int32 */
-      size?: number;
-      content?: components["schemas"]["ParcelSummary"][];
-      /** Format: int32 */
-      number?: number;
-      sort?: components["schemas"]["SortObject"];
-      /** Format: int32 */
-      numberOfElements?: number;
-      empty?: boolean;
-    };
-    TrackEventDto: {
-      /** Format: uuid */
-      id?: string;
-      /** @enum {string} */
-      state?: "PUBLISHED" | "BOOKED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
-      note?: string;
-      /** Format: date-time */
-      occurredAt?: string;
-    };
-    PageParcelBookingDto: {
-      /** Format: int64 */
-      totalElements?: number;
-      /** Format: int32 */
-      totalPages?: number;
-      pageable?: components["schemas"]["PageableObject"];
-      first?: boolean;
-      last?: boolean;
-      /** Format: int32 */
-      size?: number;
-      content?: components["schemas"]["ParcelBookingDto"][];
-      /** Format: int32 */
-      number?: number;
-      sort?: components["schemas"]["SortObject"];
-      /** Format: int32 */
-      numberOfElements?: number;
-      empty?: boolean;
-    };
-    NotificationDto: {
-      /** Format: uuid */
-      notificationId?: string;
-      /** @enum {string} */
-      type?: "VERIFY_USER" | "RESET_PASSWORD" | "USER_CREATED" | "MESSAGE_RECEIVED" | "REQUEST_RECEIVED" | "BOOKING_CREATED" | "BOOKING_CANCELED" | "BOOKING_COMPLETED" | "BOOKING_PAID" | "TRIP_CANCELLED" | "PARCEL_DELIVERED";
-      /** Format: uuid */
-      referenceId?: string;
-      isRead?: boolean;
-      payload?: {
-        [key: string]: unknown;
-      };
-      /** Format: date-time */
-      createdAt?: string;
-    };
-    MatchResultDto: {
-      trip?: components["schemas"]["TripSummary"];
-      owner?: components["schemas"]["UserBrief"];
-      price?: components["schemas"]["Price"];
-      /** Format: double */
-      score?: number;
-    };
-    PageMatchResultDto: {
-      /** Format: int64 */
-      totalElements?: number;
-      /** Format: int32 */
-      totalPages?: number;
-      pageable?: components["schemas"]["PageableObject"];
-      first?: boolean;
-      last?: boolean;
-      /** Format: int32 */
-      size?: number;
-      content?: components["schemas"]["MatchResultDto"][];
-      /** Format: int32 */
-      number?: number;
-      sort?: components["schemas"]["SortObject"];
-      /** Format: int32 */
-      numberOfElements?: number;
-      empty?: boolean;
-    };
-    ConversationSummary: {
-      /** Format: uuid */
-      conversationId?: string;
-      participants?: components["schemas"]["UserBrief"][];
-      lastMessage?: components["schemas"]["MessageSummary"];
-      /** Format: date-time */
-      createdAt?: string;
-    };
-    PageBookingDto: {
-      /** Format: int64 */
-      totalElements?: number;
-      /** Format: int32 */
-      totalPages?: number;
-      pageable?: components["schemas"]["PageableObject"];
-      first?: boolean;
-      last?: boolean;
-      /** Format: int32 */
-      size?: number;
-      content?: components["schemas"]["BookingDto"][];
-      /** Format: int32 */
-      number?: number;
-      sort?: components["schemas"]["SortObject"];
-      /** Format: int32 */
-      numberOfElements?: number;
-      empty?: boolean;
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
-
 export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
 export interface operations {
-
-  updatePassword: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UpdatePasswordRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  getTrip: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["TripDetails"];
+    updatePassword: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  updateTrip: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["TripUpdateRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["TripDetails"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdatePasswordRequest"];
+            };
         };
-      };
-    };
-  };
-  deleteTrip: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  getMyProfile: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ProfileDetails"];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  updateProfile: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ProfileUpdateRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ProfileSummary"];
+    getTrip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  getParcel: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ParcelDetails"];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["TripDetails"];
+                };
+            };
         };
-      };
     };
-  };
-  updateParcel: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ParcelUpdateRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ParcelDetails"];
+    updateTrip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  deleteParcel: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  verify: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["VerifyEmailRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  requestVerification: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["RequestEmailVerification"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  register: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserCreateRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["UserDetails"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TripUpdateRequest"];
+            };
         };
-      };
-    };
-  };
-  resetPassword: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ResetPasswordRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  requestPasswordReset: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["RequestPasswordReset"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  getAllTrips: {
-    parameters: {
-      query: {
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageTripSummary"];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["TripDetails"];
+                };
+            };
         };
-      };
     };
-  };
-  createTrip: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["TripCreateRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["TripDetails"];
+    deleteTrip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  addStop: {
-    parameters: {
-      path: {
-        tripId: string;
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["AddressRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  getUserReviews: {
-    parameters: {
-      query: {
-        revieweeId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ReviewDto"][];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  create: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateReviewRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ReviewDto"];
+    updateProfile: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getParcels: {
-    parameters: {
-      query: {
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageParcelSummary"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProfileUpdateRequest"];
+            };
         };
-      };
-    };
-  };
-  createParcel: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ParcelCreateRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ParcelDetails"];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ProfileDto"];
+                };
+            };
         };
-      };
     };
-  };
-  addParcelImage: {
-    parameters: {
-      path: {
-        parcelId: string;
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ParcelImageRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ParcelImageDto"];
+    getParcel: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  getPresignUrl: {
-    parameters: {
-      query: {
-        content: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PresignedUrl"];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ParcelDetails"];
+                };
+            };
         };
-      };
     };
-  };
-  geocode: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["AddressRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["Address"];
+    updateParcel: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  getOrCreateConversation: {
-    parameters: {
-      path: {
-        otherUserId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ConversationDetails"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ParcelUpdateRequest"];
+            };
         };
-      };
-    };
-  };
-  handleWebhook: {
-    requestBody: {
-      content: {
-        "application/json": string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  createCheckoutSession: {
-    parameters: {
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PaymentResponse"];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ParcelDetails"];
+                };
+            };
         };
-      };
     };
-  };
-  getOrCreateBooking: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateBookingRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["BookingDto"];
+    deleteParcel: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  refresh: {
-    parameters: {
-      cookie?: {
-        REFRESH_TOKEN?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["UserDetails"];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  logout: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  login: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["AuthRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["UserDetails"];
+    verify: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  markAsRead: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  markAsRead_1: {
-    parameters: {
-      path: {
-        conversationId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": number;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VerifyEmailRequest"];
+            };
         };
-      };
-    };
-  };
-  rejectBooking: {
-    parameters: {
-      query: {
-        reason: string;
-      };
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  confirmPickUp: {
-    parameters: {
-      query: {
-        code: string;
-      };
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  complete: {
-    parameters: {
-      query: {
-        code: string;
-      };
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  cancel: {
-    parameters: {
-      query?: {
-        reason?: string;
-      };
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  acceptBooking: {
-    parameters: {
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  getAllUsers: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["UserSummary"][];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  getUserById: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["UserDetails"];
+    requestVerification: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getTripBookings: {
-    parameters: {
-      query: {
-        pageable: components["schemas"]["Pageable"];
-      };
-      path: {
-        tripId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageTripBookingDto"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RequestEmailVerification"];
+            };
         };
-      };
-    };
-  };
-  getMyTrips: {
-    parameters: {
-      query: {
-        tripState?: "PUBLISHED" | "FULL" | "IN_TRANSIT" | "COMPLETED" | "CANCELLED";
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageTripSummary"];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  getReviewsMe: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ReviewDto"][];
+    register: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getProfileById: {
-    parameters: {
-      path: {
-        profileId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ProfileDetails"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserCreateRequest"];
+            };
         };
-      };
-    };
-  };
-  getTrackingEvents: {
-    parameters: {
-      path: {
-        parcelId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["TrackEventDto"][];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserDetails"];
+                };
+            };
         };
-      };
     };
-  };
-  getParcelBookings: {
-    parameters: {
-      query: {
-        pageable: components["schemas"]["Pageable"];
-      };
-      path: {
-        parcelId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageParcelBookingDto"];
+    resetPassword: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getMyParcels: {
-    parameters: {
-      query: {
-        state?: "PUBLISHED" | "BOOKED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageParcelSummary"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResetPasswordRequest"];
+            };
         };
-      };
-    };
-  };
-  getMyNotifications: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["NotificationDto"][];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  getNotificationByID: {
-    parameters: {
-      path: {
-        notifId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["NotificationDto"];
+    requestPasswordReset: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getMatchingTrips: {
-    parameters: {
-      query: {
-        parcelId: string;
-        date: string;
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageMatchResultDto"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RequestPasswordReset"];
+            };
         };
-      };
-    };
-  };
-  getMyConversations: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ConversationSummary"][];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  getConversationDetails: {
-    parameters: {
-      path: {
-        conversationId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["ConversationDetails"];
+    getAllTrips: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getUnreadCount: {
-    parameters: {
-      path: {
-        conversationId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": number;
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageTripSummary"];
+                };
+            };
         };
-      };
     };
-  };
-  getBooking: {
-    parameters: {
-      path: {
-        bookingId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["BookingDto"];
+    createTrip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  getMySentBookings: {
-    parameters: {
-      query: {
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageBookingDto"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TripCreateRequest"];
+            };
         };
-      };
-    };
-  };
-  getMyReceivedBookings: {
-    parameters: {
-      query: {
-        pageable: components["schemas"]["Pageable"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["PageBookingDto"];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["TripDetails"];
+                };
+            };
         };
-      };
     };
-  };
-  getMe: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "*/*": components["schemas"]["UserDetails"];
+    addStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tripId: string;
+            };
+            cookie?: never;
         };
-      };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AddressRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
     };
-  };
-  deleteMe: {
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
+    getUserReviews: {
+        parameters: {
+            query: {
+                revieweeId: string;
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageReviewDto"];
+                };
+            };
+        };
     };
-  };
-  deleteTripStop: {
-    parameters: {
-      path: {
-        tripId: string;
-        stopId: string;
-      };
+    create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateReviewRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ReviewDto"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
+    getParcels: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageParcelSummary"];
+                };
+            };
+        };
     };
-  };
-  remove: {
-    parameters: {
-      path: {
-        id: string;
-      };
+    createParcel: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ParcelCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ParcelDetails"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
+    addParcelImage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                parcelId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ParcelImageRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ParcelImageDto"];
+                };
+            };
+        };
     };
-  };
-  removeParcelImage: {
-    parameters: {
-      path: {
-        parcelId: string;
-        imageId: string;
-      };
+    getPresignUrl: {
+        parameters: {
+            query: {
+                content: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PresignedUrl"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
+    geocode: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AddressRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Address"];
+                };
+            };
+        };
     };
-  };
-  delete: {
-    parameters: {
-      path: {
-        id: string;
-      };
+    getOrCreateConversation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                otherUserId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ConversationDetails"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
+    handleWebhook: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": string;
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
     };
-  };
+    createCheckoutSession: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PaymentResponse"];
+                };
+            };
+        };
+    };
+    getOrCreateBooking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateBookingRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["BookingDto"];
+                };
+            };
+        };
+    };
+    refresh: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: {
+                REFRESH_TOKEN?: string;
+            };
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserDetails"];
+                };
+            };
+        };
+    };
+    logout: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    login: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AuthRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserDetails"];
+                };
+            };
+        };
+    };
+    markAsRead: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    markAsRead_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": number;
+                };
+            };
+        };
+    };
+    rejectBooking: {
+        parameters: {
+            query: {
+                reason: string;
+            };
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    confirmPickUp: {
+        parameters: {
+            query: {
+                code: string;
+            };
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    complete: {
+        parameters: {
+            query: {
+                code: string;
+            };
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    cancel: {
+        parameters: {
+            query?: {
+                reason?: string;
+            };
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    acceptBooking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    getAllUsers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserSummary"][];
+                };
+            };
+        };
+    };
+    getUserById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserDetails"];
+                };
+            };
+        };
+    };
+    getTripRequests: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path: {
+                tripId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageTripBookingDto"];
+                };
+            };
+        };
+    };
+    getTripBookings: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path: {
+                tripId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageTripBookingDto"];
+                };
+            };
+        };
+    };
+    getMyTrips: {
+        parameters: {
+            query: {
+                tripState?: "PUBLISHED" | "ACTIVE" | "FULL" | "EXPIRED" | "COMPLETED" | "CANCELLED";
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageTripSummary"];
+                };
+            };
+        };
+    };
+    getReviewsMe: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageReviewDto"];
+                };
+            };
+        };
+    };
+    getProfileById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profileId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ProfileDto"];
+                };
+            };
+        };
+    };
+    getTrackingEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                parcelId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["TrackEventDto"][];
+                };
+            };
+        };
+    };
+    getParcelBookings: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path: {
+                parcelId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageParcelBookingDto"];
+                };
+            };
+        };
+    };
+    getMyParcels: {
+        parameters: {
+            query: {
+                state?: "PUBLISHED" | "BOOKED" | "PICKED_UP" | "IN_TRANSIT" | "DELIVERED" | "CANCELLED";
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageParcelSummary"];
+                };
+            };
+        };
+    };
+    getMyNotifications: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["NotificationDto"][];
+                };
+            };
+        };
+    };
+    getNotificationByID: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                notifId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["NotificationDto"];
+                };
+            };
+        };
+    };
+    getMatchingTrips: {
+        parameters: {
+            query: {
+                parcelId: string;
+                date: string;
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageMatchResultDto"];
+                };
+            };
+        };
+    };
+    getMyConversations: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ConversationSummary"][];
+                };
+            };
+        };
+    };
+    getConversationDetails: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ConversationDetails"];
+                };
+            };
+        };
+    };
+    getUnreadCount: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                conversationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": number;
+                };
+            };
+        };
+    };
+    getBooking: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bookingId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["BookingDto"];
+                };
+            };
+        };
+    };
+    getMySentBookings: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageBookingDto"];
+                };
+            };
+        };
+    };
+    getMyReceivedBookings: {
+        parameters: {
+            query: {
+                pageable: components["schemas"]["Pageable"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageBookingDto"];
+                };
+            };
+        };
+    };
+    getMe: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserDetails"];
+                };
+            };
+        };
+    };
+    deleteMe: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    deleteTripStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tripId: string;
+                stopId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    removeParcelImage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                parcelId: string;
+                imageId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
 }

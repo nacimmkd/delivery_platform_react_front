@@ -1,15 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./TripCard.module.css";
 import Text from "@/shared/components/text/Text.tsx";
 import Tag from "@/shared/components/tag/Tag.tsx";
-import Container from "@/shared/components/container/Container.tsx";
-import Button from "@/shared/components/button/Button.tsx";
-import Divider from "@/shared/components/divider/Divider.tsx";
-import { Circle, Euro, MapPin, Route, WeightTilde, Zap } from "lucide-react";
+import Itinerary from "@/shared/components/itinerary/Itinerary.tsx";
+import { Euro, Route, WeightTilde, Zap } from "lucide-react";
 import type { TripSummary } from "@/shared/types";
-import formatDate from "@/shared/utils/formatDate.ts";
 import formatPrice from "@/shared/utils/formatPrice.ts";
-import { addressToBriefString } from "@/shared/utils/addressToString.ts";
-import { tripDetailsPath, tripEditPath } from "@/app/routes/paths.ts";
+import { tripDetailsPath } from "@/app/routes/paths.ts";
 import { tripStateLabel } from "@/features/trips/utils/tripLabels.ts";
 
 type TripProps = {
@@ -17,56 +14,49 @@ type TripProps = {
 };
 
 export default function TripCard({ trip }: TripProps) {
-    const { tripId, departure, arrival, departureDate, arrivalDate, availableWeightKg, remainingWeightKg, pricePerKg, instantBooking, state, stopCount } = trip;
-    const stopCountText = stopCount ? `${stopCount} arrêt${stopCount > 1 ? "s" : ""}` : undefined;
+    const navigate = useNavigate();
+    const { tripId, departure, arrival, departureDate, arrivalDate, availableWeightKg, remainingWeightKg, pricePerKg, instantBooking, state } = trip;
+    const remaining = remainingWeightKg ?? availableWeightKg ?? 0;
+    const used = availableWeightKg ? availableWeightKg - remaining : 0;
+    const usedPercent = availableWeightKg ? Math.round((used / availableWeightKg) * 100) : 0;
+
+    function handleClick() {
+        if (!tripId) return;
+        navigate(tripDetailsPath(tripId));
+    }
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${styles.clickable}`} onClick={handleClick}>
             <div className={styles.status}>
-                <Tag icon={<Route size={14} />} value={tripStateLabel(state)} />
+                <Tag icon={<Route size={14} />} value={tripStateLabel(state)} className={styles.status_badge} />
             </div>
 
-            <Container gap={12} className={styles.info}>
-                <div className={styles.route}>
-                    <div className={styles.point}>
-                        <Text tag="p" icon={<Circle size={13} />} weight="semibold" className={styles.point_label}>
-                            <span className={styles.point_text}>{addressToBriefString(departure)}</span>
-                        </Text>
-                        <Text tag="span" muted size={0.8}>{formatDate(departureDate)}</Text>
-                    </div>
+            <div className={styles.top}>
+                <Itinerary
+                    departure={departure}
+                    arrival={arrival}
+                    departureDate={departureDate}
+                    arrivalDate={arrivalDate}
+                />
+            </div>
 
-                    <Divider
-                        className={`${styles.route_divider} ${styles.route_divider_horizontal}`}
-                        text={stopCountText}
-                    />
-                    <Divider
-                        orientation="vertical"
-                        className={`${styles.route_divider} ${styles.route_divider_vertical}`}
-                        text={stopCountText}
-                    />
-
-                    <div className={styles.point}>
-                        <Text tag="p" icon={<MapPin size={13} />} weight="semibold" className={styles.point_label}>
-                            <span className={styles.point_text}>{addressToBriefString(arrival)}</span>
-                        </Text>
-                        <Text tag="span" muted size={0.8}>{formatDate(arrivalDate)}</Text>
-                    </div>
-                </div>
-
-                <Container direction="row" align="center" gap={8} className={styles.details}>
+            <div className={styles.bottom}>
+                <div className={styles.tags}>
                     <Tag icon={<Euro />} value={`${formatPrice(pricePerKg)}/kg`} />
-                    <Tag icon={<WeightTilde />} value={`${remainingWeightKg ?? availableWeightKg} kg dispo`} />
+                    <Tag icon={<WeightTilde />} value={`${remaining} kg dispo`} />
                     {instantBooking && (
                         <Tag icon={<Zap />} value="Instantané" variant="accent" />
                     )}
-                </Container>
-            </Container>
+                </div>
 
-            <Divider orientation="vertical" className={styles.section_divider} />
-
-            <div className={styles.buttons}>
-                <Button to={tripDetailsPath(tripId ?? "")} label="Détails" variant="secondary" className={styles.link} />
-                <Button to={tripEditPath(tripId ?? "")} label="Modifier" variant="secondary" className={styles.link} />
+                <div className={styles.weight_bar}>
+                    <div className={styles.weight_track}>
+                        <div className={styles.weight_fill} style={{ width: `${usedPercent}%` }} />
+                    </div>
+                    <Text tag="span" weight="bold" className={styles.weight_values}>
+                        {used}<Text tag="span" muted className={styles.weight_total}>/{availableWeightKg} kg utilisé</Text>
+                    </Text>
+                </div>
             </div>
         </div>
     );

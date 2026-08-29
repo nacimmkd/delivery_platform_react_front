@@ -22,11 +22,11 @@ const authStore = create<AuthState>((set) => ({
         set({
             user,
             isAuthenticated: user !== null,
-            isVerified: user?.verified === true,
+            isVerified: user?.emailVerified === true,
         }),
 
     hydrate: () => authService.getMe()
-        .then((user) => set({ user, isAuthenticated: true, isVerified: user.verified === true }))
+        .then((user) => set({ user, isAuthenticated: true, isVerified: user.emailVerified === true }))
         .catch(() => set({ user: null, isAuthenticated: false, isVerified: false }))
         .finally(() => set({ isInitializing: false })),
 }));

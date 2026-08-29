@@ -4,7 +4,7 @@ import Button from "@/shared/components/button/Button.tsx";
 import Spinner from "@/shared/components/spinner/Spinner.tsx";
 import Container from "@/shared/components/container/Container.tsx";
 import {PackageOpen, PlusIcon} from "lucide-react";
-import Parcel from "@/features/parcel/components/Parcel/Parcel.tsx";
+import ParcelCard from "@/features/parcel/components/ParcelCard/ParcelCard.tsx";
 import type { ParcelSummary } from "@/shared/types";
 import {paths} from "@/app/routes/paths.ts";
 import useMyParcels from "@/features/parcel/hooks/useMyParcels.ts";
@@ -20,7 +20,7 @@ const FILTERS: { key: Filter; label: string; match: (state?: ParcelSummary["stat
     { key: "cancelled", label: "Annulé", match: (state) => state === "CANCELLED" },
 ];
 
-export default function ParcelPage() {
+export default function ParcelListPage() {
     const { parcels, isLoading, error, hasMore, isLoadingMore, loadMore } = useMyParcels();
     const [filter, setFilter] = useState<Filter>("all");
 
@@ -81,7 +81,7 @@ export default function ParcelPage() {
                 {!isLoading && !error && filteredParcels.length > 0 && (
                     <Container direction="row" justify="center" gap={30} wrap>
                         {filteredParcels.map((parcel) => (
-                            <Parcel key={parcel.parcelId} parcel={parcel} />
+                            <ParcelCard key={parcel.parcelId} parcel={parcel} />
                         ))}
                     </Container>
                 )}

@@ -4,11 +4,11 @@ import styles from "./MatchResult.module.css"
 import type {MatchResultDto} from "@/shared/types";
 import Divider from "@/shared/components/divider/Divider.tsx";
 import Price from "@/shared/components/price/Price.tsx";
-import { bookingDetailsPath, paths } from "@/app/routes/paths.ts";
+import { bookingDetailsPath, userProfilePath } from "@/app/routes/paths.ts";
 import UserBrief from "@/features/profile/components/UserBrief/UserBrief.tsx";
 import Button from "@/shared/components/button/Button.tsx";
 import Tag from "@/shared/components/tag/Tag.tsx";
-import TripItinerary from "@/features/trips/components/TripItinerary/TripItinerary.tsx";
+import Itinerary from "@/shared/components/itinerary/Itinerary.tsx";
 import useCreateBooking from "@/features/booking/hooks/useCreateBooking.ts";
 
 type SearchResultProps = {
@@ -33,18 +33,17 @@ export default function MatchResult({ result, parcelId }: SearchResultProps) {
         <div className={styles.container}>
             {instantBooking && <Tag className={styles.tag} value="Instantané" variant="accent"/>}
             <div className={styles.left_container}>
-                <TripItinerary
+                <Itinerary
                     departure={trip?.departure}
                     arrival={trip?.arrival}
                     departureDate={trip?.departureDate}
                     arrivalDate={trip?.arrivalDate}
-                    stopCount={trip?.stopCount}
                 />
             </div>
 
             <Divider orientation="vertical" className={styles.divider} />
 
-            <Link to={paths.profile} className={styles.middle_container}>
+            <Link to={userProfilePath(owner?.userId ?? "")} className={styles.middle_container}>
                 {owner && <UserBrief user={owner} />}
             </Link>
 

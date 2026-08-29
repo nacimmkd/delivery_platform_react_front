@@ -38,6 +38,7 @@ type TripFormProps = {
     heading?: string;
     subtitle?: string;
     submitLabel?: string;
+    lockRoute?: boolean;
 };
 
 export default function TripForm({
@@ -51,6 +52,7 @@ export default function TripForm({
     heading = "Proposer un trajet",
     subtitle = "Renseignez les détails de votre trajet ainsi que les conditions de transport",
     submitLabel = "Publier le trajet",
+    lockRoute = false,
 }: TripFormProps) {
 
     const isCreateMode = !tripId;
@@ -90,7 +92,7 @@ export default function TripForm({
 
     return (
         <div className={styles.container}>
-            <Error error={error} />
+            <Error error={error} showWithFieldErrors />
 
             <Container gap={0} className={styles.heading}>
                 <Text tag="h1" weight="bold" size={2}>{heading}</Text>
@@ -117,6 +119,7 @@ export default function TripForm({
                                         label="Départ"
                                         value={departureLabel}
                                         required
+                                        disabled={lockRoute}
                                         onChange={setDepartureLabel}
                                         onSelect={(address) => updateField("departureAddress", address)}
                                         error={error?.fields.departureAddress}
@@ -127,6 +130,7 @@ export default function TripForm({
                                         label="Arrivée"
                                         value={arrivalLabel}
                                         required
+                                        disabled={lockRoute}
                                         onChange={setArrivalLabel}
                                         onSelect={(address) => updateField("arrivalAddress", address)}
                                         error={error?.fields.arrivalAddress}
@@ -146,6 +150,7 @@ export default function TripForm({
                                             label="Date de départ"
                                             value={trip.departureDate}
                                             required
+                                            disabled={lockRoute}
                                             onChange={(e) => updateField("departureDate", e.target.value)}
                                             error={error?.fields.departureDate}
                                         />
@@ -156,6 +161,7 @@ export default function TripForm({
                                             label="Date d'arrivée"
                                             value={trip.arrivalDate}
                                             required
+                                            disabled={lockRoute}
                                             onChange={(e) => updateField("arrivalDate", e.target.value)}
                                             error={error?.fields.arrivalDate}
                                         />

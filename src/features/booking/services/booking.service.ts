@@ -17,6 +17,22 @@ const bookingService = {
         await api.patch(`/bookings/${id}/cancel`);
     },
 
+    async acceptBooking(id: string): Promise<void> {
+        await api.patch(`/bookings/${id}/accept`);
+    },
+
+    async rejectBooking(id: string, reason: string): Promise<void> {
+        await api.patch(`/bookings/${id}/reject`, null, { params: { reason } });
+    },
+
+    async confirmPickup(id: string, code: string): Promise<void> {
+        await api.patch(`/bookings/${id}/confirm-pickup`, null, { params: { code } });
+    },
+
+    async completeBooking(id: string, code: string): Promise<void> {
+        await api.patch(`/bookings/${id}/complete`, null, { params: { code } });
+    },
+
 };
 
 export default bookingService;

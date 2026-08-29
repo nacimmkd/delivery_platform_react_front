@@ -12,11 +12,10 @@ export type ResetPasswordRequest     = components["schemas"]["ResetPasswordReque
 // --- User ---
 export type UserDetails              = components["schemas"]["UserDetails"];
 export type UserSummary              = components["schemas"]["UserSummary"];
-export type UserBrief                = components["schemas"]["UserBrief"];
 
 // --- Profile ---
-export type ProfileDetails           = components["schemas"]["ProfileDetails"];
-export type ProfileSummary           = components["schemas"]["ProfileSummary"];
+export type ProfileDto               = components["schemas"]["ProfileDto"];
+export type ProfileBrief             = components["schemas"]["ProfileBrief"];
 export type ProfileUpdateRequest     = components["schemas"]["ProfileUpdateRequest"];
 
 // --- AddressForm ---
@@ -36,7 +35,7 @@ export type TripBookingDto           = components["schemas"]["TripBookingDto"];
 export type PageTripSummary          = components["schemas"]["PageTripSummary"];
 export type PageTripBookingDto       = components["schemas"]["PageTripBookingDto"];
 
-// --- ParcelPage ---
+// --- ParcelListPage ---
 export type ParcelDetails            = components["schemas"]["ParcelDetails"];
 export type ParcelSummary            = components["schemas"]["ParcelSummary"];
 export type ParcelCreateRequest      = components["schemas"]["ParcelCreateRequest"];
@@ -63,6 +62,7 @@ export type Price                    = components["schemas"]["Price"];
 
 // --- Review ---
 export type ReviewDto                = components["schemas"]["ReviewDto"];
+export type PageReviewDto            = components["schemas"]["PageReviewDto"];
 export type CreateReviewRequest      = components["schemas"]["CreateReviewRequest"];
 
 // --- Payment ---

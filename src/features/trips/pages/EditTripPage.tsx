@@ -72,6 +72,7 @@ export default function EditTripPage() {
                 onSubmit={handleSubmit}
                 isLoading={isLoading}
                 error={error}
+                lockRoute={trip.state !== "PUBLISHED"}
             />
         </Container>
     );

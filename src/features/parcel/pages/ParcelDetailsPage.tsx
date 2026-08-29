@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Route } from "lucide-react";
+import { ArrowUpRight, Pencil, Trash2 } from "lucide-react";
 import Text from "@/shared/components/text/Text.tsx";
-import Tag from "@/shared/components/tag/Tag.tsx";
 import Container from "@/shared/components/container/Container.tsx";
 import Spinner from "@/shared/components/spinner/Spinner.tsx";
 import Button from "@/shared/components/button/Button.tsx";
@@ -12,7 +11,6 @@ import ParcelBookingCard from "@/features/parcel/components/ParcelBookingCard/Pa
 import Confirmation from "@/shared/components/confirmation/Confirmation.tsx";
 import useParcelQuery from "@/features/parcel/hooks/useParcelQuery.ts";
 import useDeleteParcel from "@/features/parcel/hooks/useDeleteParcel.ts";
-import { parcelStateLabel } from "@/features/parcel/utils/parcelLabels.ts";
 import { paths, parcelEditPath } from "@/app/routes/paths.ts";
 
 export default function ParcelDetailsPage() {
@@ -21,6 +19,8 @@ export default function ParcelDetailsPage() {
     const { parcel, bookings, isLoading, isError } = useParcelQuery(id);
     const { deleteParcel, isLoading: isDeleting } = useDeleteParcel();
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
+    const canModifyOrDelete = parcel?.state === "PUBLISHED" || parcel?.state === "CANCELLED";
 
     if (isError) {
         return (
@@ -45,35 +45,50 @@ export default function ParcelDetailsPage() {
     const actionStyle = { height: 42, minWidth: 120, boxSizing: "border-box" } as const;
 
     async function handleConfirmDelete() {
-        const success = await deleteParcel(parcel.parcelId ?? "");
+        const success = await deleteParcel(parcel?.parcelId ?? "");
         if (success) navigate(paths.parcels_list);
     }
 
     return (
         <Container gap={30} maxWidth={1000} margin="0 auto" padding={20}>
-            <Container direction="row" align="center" justify="space-between" gap={20}>
+            <Container direction="row" align="center" justify="space-between" gap={20} stackOnMobile>
                 <Container direction="row" align="center" gap={14}>
                     <Text tag="h1" weight="bold" size={2}>{parcel.title}</Text>
-                    <Tag icon={<Route size={14} />} value={parcelStateLabel(parcel.state)} />
                 </Container>
 
-                <Container direction="row" align="center" gap={10}>
-                    <Button to={parcelEditPath(parcel.parcelId ?? "")} label="Modifier" variant="secondary" size="md" style={actionStyle} />
-                    <Button
-                        label="Supprimer"
-                        variant="danger"
+                <Container direction="row" align={"center"} justify={"end"} gap={10} wrap>
+                    {canModifyOrDelete && <Button
+                        iconOnly
+                        variant="ghost"
                         size="md"
-                        style={actionStyle}
+                        icon={<Trash2 size={18} />}
+                        ariaLabel="Supprimer le colis"
                         onClick={() => setIsConfirmOpen(true)}
-                    />
-                    {parcel.state === "PUBLISHED" && (
-                        <Button to={`${paths.search}?parcelId=${parcel.parcelId}`} label="Envoyer" variant="main" size="md" style={actionStyle} />
+                    />}
+                    {canModifyOrDelete && <Button
+                        to={parcelEditPath(parcel.parcelId ?? "")}
+                        iconOnly
+                        variant="ghost"
+                        size="md"
+                        icon={<Pencil size={18} />}
+                        ariaLabel="Modifier le colis"
+                    />}
+                    {parcel?.state === "PUBLISHED" && (
+                        <Button
+                            to={`${paths.search}?parcelId=${parcel?.parcelId}`}
+                            label="Envoyer"
+                            variant="main"
+                            size="md"
+                            style={actionStyle}
+                            icon={<ArrowUpRight size={18} />}
+                            iconPosition="right"
+                        />
                     )}
                 </Container>
             </Container>
 
-            <Container direction="row" wrap gap={24}>
-                <Container style={{ flex: "1 1 380px", minWidth: 0 }}>
+            <Container direction="row" gap={24} stackOnMobile>
+                <Container style={{ flex: "1 1 70%", minWidth: 0 }}>
                     <ParcelOverview
                         images={images}
                         weightKg={parcel.weightKg}
@@ -81,7 +96,7 @@ export default function ParcelDetailsPage() {
                         fragile={parcel.fragile}
                     />
                 </Container>
-                <Container style={{ flex: "1 1 380px", minWidth: 0 }}>
+                <Container style={{ flex: "1 1 30%", minWidth: 0 }}>
                     <ParcelTracking
                         state={parcel.state}
                         pickup={parcel.pickup}
@@ -101,7 +116,7 @@ export default function ParcelDetailsPage() {
                 {bookings.length > 0 && (
                     <Container gap={12}>
                         {bookings.map((booking) => (
-                            <ParcelBookingCard key={booking.bookingId} booking={booking} />
+                            <ParcelBookingCard key={booking.bookingId} booking={booking} parcelState={parcel.state} />
                         ))}
                     </Container>
                 )}

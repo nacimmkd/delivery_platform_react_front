@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PackageCheck, Route, Ruler, WeightTilde } from "lucide-react";
 import styles from "./BookingDetailsPage.module.css";
 import Text from "@/shared/components/text/Text.tsx";
@@ -9,20 +9,26 @@ import Spinner from "@/shared/components/spinner/Spinner.tsx";
 import Price from "@/shared/components/price/Price.tsx";
 import Button from "@/shared/components/button/Button.tsx";
 import Confirmation from "@/shared/components/confirmation/Confirmation.tsx";
-import TripItinerary from "@/features/trips/components/TripItinerary/TripItinerary.tsx";
+import Itinerary from "@/shared/components/itinerary/Itinerary.tsx";
 import UserBrief from "@/features/profile/components/UserBrief/UserBrief.tsx";
+import authStore from "@/features/auth/store/auth.store.ts";
 import useBookingQuery from "@/features/booking/hooks/useBookingQuery.ts";
 import useCancelBooking from "@/features/booking/hooks/useCancelBooking.ts";
 import bookingStateLabel from "@/shared/utils/bookingStateLabel.ts";
-import { bookingPaymentPath } from "@/app/routes/paths.ts";
+import { bookingPaymentPath, userProfilePath } from "@/app/routes/paths.ts";
 import type { BookingDto } from "@/shared/types";
 
-function paymentStatusText(state: BookingDto["state"], paid: boolean): string {
-    if (state === "COMPLETED") return "Livraison terminée";
-    if (paid) return "Payé";
-    if (state === "REJECTED") return "Réservation refusée";
-    if (state === "CANCELLED") return "Réservation annulée";
-    return "En attente de paiement";
+const PAYMENT_STATUS_TEXT: Record<NonNullable<BookingDto["state"]>, string> = {
+    PENDING: "En attente de paiement",
+    WAITING_FOR_ANSWER: "Votre demande est bien envoyée au livreur",
+    ACCEPTED: "Votre demande a été acceptée",
+    REJECTED: "Réservation refusée",
+    CANCELLED: "Réservation annulée",
+    COMPLETED: "Livraison terminée",
+};
+
+function paymentStatusText(state: BookingDto["state"]): string {
+    return PAYMENT_STATUS_TEXT[state ?? "PENDING"];
 }
 
 export default function BookingDetailsPage() {
@@ -30,6 +36,7 @@ export default function BookingDetailsPage() {
     const { booking, isLoading, isError } = useBookingQuery(id);
     const { cancelBooking, isLoading: isCancelling } = useCancelBooking();
     const [isCancelOpen, setIsCancelOpen] = useState(false);
+    const currentUserId = authStore((s) => s.user?.userId);
 
     if (isError) {
         return (
@@ -47,10 +54,10 @@ export default function BookingDetailsPage() {
         );
     }
 
-    const paid = booking.state === "COMPLETED";
-    const closed = booking.state === "REJECTED" || booking.state === "CANCELLED" || paid;
-    const canPay = !closed;
+    const canPay = booking.state === "PENDING";
+    const closed = booking.state === "REJECTED" || booking.state === "CANCELLED" || booking.state === "COMPLETED";
     const canCancel = !closed;
+    const otherParty = currentUserId === booking.sender?.userId ? booking.carrier : booking.sender;
 
     async function handleCancel() {
         const success = await cancelBooking(booking?.bookingId ?? "");
@@ -66,7 +73,7 @@ export default function BookingDetailsPage() {
                             <PackageCheck size={26} />
                         </div>
                         <Text tag="h2" weight="bold">Réservation</Text>
-                        <Text tag="p" muted>{paymentStatusText(booking.state, paid)}</Text>
+                        <Text tag="p" muted>{paymentStatusText(booking.state)}</Text>
                         <Tag icon={<Route size={14} />} value={bookingStateLabel(booking.state)} />
                     </div>
 
@@ -84,18 +91,12 @@ export default function BookingDetailsPage() {
 
                     <div className={styles.section}>
                         <Text tag="h4" weight="semibold" muted size={0.8}>Trajet</Text>
-                        <TripItinerary
+                        <Itinerary
                             departure={booking.trip?.departure}
                             arrival={booking.trip?.arrival}
                             departureDate={booking.trip?.departureDate}
                             arrivalDate={booking.trip?.arrivalDate}
-                            stopCount={booking.trip?.stopCount}
                         />
-                    </div>
-
-                    <div className={styles.section}>
-                        <Text tag="h4" weight="semibold" muted size={0.8}>Livreur</Text>
-                        {booking.carrier && <UserBrief user={booking.carrier} />}
                     </div>
 
                     {canCancel && (
@@ -108,14 +109,20 @@ export default function BookingDetailsPage() {
                     )}
                 </div>
 
-                <div className={styles.paymentCard}>
-                    <Text tag="h4" weight="semibold" muted size={0.8}>Paiement</Text>
-                    <Price totalPrice={booking.price} label="Prix total" />
+                <div className={styles.sideColumn}>
+                    <div className={styles.paymentCard}>
+                        <Text tag="h4" weight="semibold" muted size={0.8}>Paiement</Text>
+                        <Price totalPrice={booking.price} label="Prix total" />
+                        {canPay && ( <Button to={bookingPaymentPath(booking.bookingId ?? "")} label="Payer" variant="main" fullWidth />)}
+                    </div>
 
-                    {paid && <Tag value="Payé" />}
-                    {canPay && (
-                        <Button to={bookingPaymentPath(booking.bookingId ?? "")} label="Payer" variant="main" fullWidth />
-                    )}
+                    <div className={styles.carrierCard}>
+                        {otherParty && (
+                            <Link to={userProfilePath(otherParty.userId ?? "")} className={styles.carrierLink}>
+                                <UserBrief user={otherParty} />
+                            </Link>
+                        )}
+                    </div>
                 </div>
             </div>
 

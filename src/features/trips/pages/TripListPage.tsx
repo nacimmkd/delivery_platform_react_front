@@ -9,17 +9,17 @@ import type { TripSummary } from "@/shared/types";
 import { paths } from "@/app/routes/paths.ts";
 import useMyTrips from "@/features/trips/hooks/useMyTrips.ts";
 
-type Filter = "all" | "published" | "in_transit" | "completed" | "cancelled";
+type Filter = "all" | "published" | "completed" | "expired" | "cancelled";
 
 const FILTERS: { key: Filter; label: string; match: (state?: TripSummary["state"]) => boolean }[] = [
     { key: "all", label: "Tous", match: () => true },
-    { key: "published", label: "Publié", match: (state) => state === "PUBLISHED" || state === "FULL" },
-    { key: "in_transit", label: "En transit", match: (state) => state === "IN_TRANSIT" },
+    { key: "published", label: "Publié", match: (state) => state === "PUBLISHED" || state === "ACTIVE" || state === "FULL" },
     { key: "completed", label: "Terminé", match: (state) => state === "COMPLETED" },
+    { key: "expired", label: "Expiré", match: (state) => state === "EXPIRED" },
     { key: "cancelled", label: "Annulé", match: (state) => state === "CANCELLED" },
 ];
 
-export default function TripPage() {
+export default function TripListPage() {
     const { trips, isLoading, error } = useMyTrips();
     const [filter, setFilter] = useState<Filter>("all");
 
@@ -27,7 +27,7 @@ export default function TripPage() {
     const filteredTrips = trips.filter((trip) => activeFilter.match(trip.state));
 
     return (
-        <Container gap={30} maxWidth={1200} margin="0 auto" padding={20}>
+        <Container gap={30} maxWidth={900} margin="0 auto" padding={20}>
             <Container direction="row" align="center" justify="space-between" gap={30} stackOnMobile>
                 <Container gap={5}>
                     <Text tag="h1" weight="bold" size={2.5}>Mes Trajets</Text>

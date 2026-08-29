@@ -58,7 +58,7 @@ export default function HomePage() {
             <Container direction="row" wrap align="center" justify="center" gap={20} padding={20}>
                 <Button
                     to={paths.parcel_create}
-                    label="Envoi Colis"
+                    label="J'envoi"
                     variant="main"
                     size="lg"
                     icon={<ArrowUpRight />}
@@ -69,7 +69,7 @@ export default function HomePage() {
                 />
                 <Button
                     to={paths.trip_create}
-                    label="Partage Trajet"
+                    label="Je voyage"
                     variant="secondary"
                     size="lg"
                     icon={<ArrowUpRight />}

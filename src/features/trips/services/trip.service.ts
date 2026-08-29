@@ -40,6 +40,11 @@ const tripService = {
         return res.data;
     },
 
+    async getTripRequests(tripId: string, page = 0, size = 20): Promise<PageTripBookingDto> {
+        const res = await api.get<PageTripBookingDto>(`/trips/${tripId}/requests`, { params: { page, size } });
+        return res.data;
+    },
+
 };
 
 export default tripService;

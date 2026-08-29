@@ -42,3 +42,12 @@
 .accent svg {
     color: var(--color-black);
 }
+
+.success {
+    background: var(--color-success-surface);
+    color: var(--color-success);
+}
+
+.success svg {
+    color: var(--color-success);
+}

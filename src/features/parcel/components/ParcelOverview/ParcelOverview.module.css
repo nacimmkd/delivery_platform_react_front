@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
     gap: 16px;
     background: var(--color-cream);
     border: 1px solid color-mix(in srgb, var(--color-taupe) 12%, transparent);
@@ -10,7 +12,7 @@
 }
 
 .container > :first-child {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
 }
 
 .details_container {

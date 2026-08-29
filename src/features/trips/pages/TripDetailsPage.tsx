@@ -1,33 +1,36 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Route } from "lucide-react";
+import { ArrowRight, Pencil, SearchX, Trash2 } from "lucide-react";
 import Text from "@/shared/components/text/Text.tsx";
-import Tag from "@/shared/components/tag/Tag.tsx";
 import Container from "@/shared/components/container/Container.tsx";
 import Spinner from "@/shared/components/spinner/Spinner.tsx";
 import Button from "@/shared/components/button/Button.tsx";
 import TripOverview from "@/features/trips/components/TripOverview/TripOverview.tsx";
 import TripItinerary from "@/features/trips/components/TripItinerary/TripItinerary.tsx";
-import TripBookingCard from "@/features/trips/components/TripBookingCard/TripBookingCard.tsx";
 import Confirmation from "@/shared/components/confirmation/Confirmation.tsx";
 import useTripQuery from "@/features/trips/hooks/useTripQuery.ts";
-import useTripBookingsQuery from "@/features/trips/hooks/useTripBookingsQuery.ts";
 import useDeleteTrip from "@/features/trips/hooks/useDeleteTrip.ts";
-import { tripStateLabel } from "@/features/trips/utils/tripLabels.ts";
-import { paths, tripEditPath } from "@/app/routes/paths.ts";
+import { paths, tripBookingsPath, tripEditPath, tripRequestsPath } from "@/app/routes/paths.ts";
+import formatDate from "@/shared/utils/formatDate.ts";
 
 export default function TripDetailsPage() {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const { trip, isError } = useTripQuery(id);
-    const { bookings } = useTripBookingsQuery(id);
     const { deleteTrip, isLoading: isDeleting } = useDeleteTrip();
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
     if (isError) {
         return (
             <Container gap={30} maxWidth={1000} margin="0 auto" padding={20}>
-                <Text tag="p" align="center">Trajet introuvable.</Text>
+                <Container align="center" justify="center" gap={6} padding="70px 20px" style={{ textAlign: "center" }}>
+                    <SearchX size={60} />
+                    <Text tag="h3" weight="bold">Trajet introuvable</Text>
+                    <Text tag="p" muted align="center" maxWidth={360}>
+                        Ce trajet n'existe plus ou a été supprimé.
+                    </Text>
+                    <Button to={paths.trips} label="Mes trajets" variant="main" style={{ marginTop: 18 }} />
+                </Container>
             </Container>
         );
     }
@@ -40,65 +43,87 @@ export default function TripDetailsPage() {
         );
     }
 
-    const actionStyle = { height: 42, minWidth: 120, boxSizing: "border-box" } as const;
+    const canDelete = trip.state === "PUBLISHED";
 
     async function handleConfirmDelete() {
-        const success = await deleteTrip(trip.tripId ?? "");
+        const success = await deleteTrip(trip?.tripId ?? "");
         if (success) navigate(paths.trips);
     }
 
     return (
         <Container gap={30} maxWidth={1000} margin="0 auto" padding={20}>
-            <Container direction="row" align="center" justify="space-between" gap={20}>
-                <Container direction="row" align="center" gap={14}>
+            <Container direction="row" align="start" justify="space-between" gap={20} stackOnMobile>
+                <Container gap={6}>
                     <Text tag="h1" weight="bold" size={2}>
                         {trip.departureAddress?.city} → {trip.arrivalAddress?.city}
                     </Text>
-                    <Tag icon={<Route size={14} />} value={tripStateLabel(trip.state)} />
+                    {trip.publishedAt && (
+                        <Text tag="p" muted size={0.85}>Publié le {formatDate(trip.publishedAt)}</Text>
+                    )}
                 </Container>
 
-                <Container direction="row" align="center" gap={10}>
-                    <Button to={tripEditPath(trip.tripId ?? "")} label="Modifier" variant="secondary" size="md" style={actionStyle} />
+                <Container direction="row" align="center" justify={"end"} gap={10}>
                     <Button
-                        label="Supprimer"
-                        variant="danger"
+                        to={tripEditPath(trip.tripId ?? "")}
+                        iconOnly
+                        variant="ghost"
                         size="md"
-                        style={actionStyle}
-                        onClick={() => setIsConfirmOpen(true)}
+                        icon={<Pencil size={18} />}
+                        ariaLabel="Modifier le trajet"
                     />
+                    {canDelete && (
+                        <Button
+                            iconOnly
+                            variant="ghost"
+                            size="md"
+                            icon={<Trash2 size={18} />}
+                            ariaLabel="Supprimer le trajet"
+                            onClick={() => setIsConfirmOpen(true)}
+                        />
+                    )}
                 </Container>
             </Container>
 
-            <Container direction="row" wrap gap={24}>
-                <Container style={{ flex: "1 1 380px", minWidth: 0 }}>
-                    <TripOverview
-                        pricePerKg={trip.pricePerKg}
-                        availableWeightKg={trip.availableWeightKg}
-                        remainingWeightKg={trip.remainingWeightKg}
-                        maxDetourKm={trip.maxDetourKm}
-                        instantBooking={trip.instantBooking}
-                        notes={trip.notes}
-                    />
-                </Container>
-                <Container style={{ flex: "1 1 380px", minWidth: 0 }}>
-                    <TripItinerary departure={trip.departureAddress} stops={trip.stops ?? []} arrival={trip.arrivalAddress} />
-                </Container>
-            </Container>
+            <TripOverview
+                state={trip.state}
+                pricePerKg={trip.pricePerKg}
+                estimatedEarning={trip.estimatedEarning}
+                availableWeightKg={trip.availableWeightKg}
+                remainingWeightKg={trip.remainingWeightKg}
+                maxDetourKm={trip.maxDetourKm}
+                instantBooking={trip.instantBooking}
+                notes={trip.notes}
+            />
 
-            <Container gap={16}>
-                <Text tag="h3" weight="bold">Réservations</Text>
+            <TripItinerary
+                departure={trip.departureAddress}
+                arrival={trip.arrivalAddress}
+                departureDate={trip.departureDate}
+                arrivalDate={trip.arrivalDate}
+                stops={trip.stops ?? []}
+            />
 
-                {bookings.length === 0 && (
-                    <Text tag="p" muted>Aucune réservation pour le moment.</Text>
-                )}
-
-                {bookings.length > 0 && (
-                    <Container gap={12}>
-                        {bookings.map((booking) => (
-                            <TripBookingCard key={booking.bookingId} booking={booking} />
-                        ))}
-                    </Container>
-                )}
+            <Container gap={12}>
+                <Button
+                    to={tripRequestsPath(trip.tripId ?? "")}
+                    label={`Nouvelles demandes (${trip.newRequestCount ?? 0})`}
+                    variant="secondary"
+                    size="lg"
+                    fullWidth
+                    icon={<ArrowRight size={18} />}
+                    iconPosition="right"
+                    style={{ justifyContent: "space-between" }}
+                />
+                <Button
+                    to={tripBookingsPath(trip.tripId ?? "")}
+                    label={`Gérer les réservations (${trip.acceptedBookingsCount ?? 0})`}
+                    variant="secondary"
+                    size="lg"
+                    fullWidth
+                    icon={<ArrowRight size={18} />}
+                    iconPosition="right"
+                    style={{ justifyContent: "space-between" }}
+                />
             </Container>
 
             {isConfirmOpen && (

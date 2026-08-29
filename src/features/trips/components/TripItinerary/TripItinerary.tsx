@@ -1,39 +1,25 @@
-import {useState} from "react";
-import { ChevronDown, Circle, MapPin } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, MapPin } from "lucide-react";
 import styles from "./TripItinerary.module.css";
 import Text from "@/shared/components/text/Text.tsx";
 import Button from "@/shared/components/button/Button.tsx";
-import { addressToBriefString } from "@/shared/utils/addressToString.ts";
+import Tag from "@/shared/components/tag/Tag.tsx";
+import { addressToString } from "@/shared/utils/addressToString.ts";
 import formatDate from "@/shared/utils/formatDate.ts";
 import type { Address, TripStopDto } from "@/shared/types";
 
-function stopCountText(count: number): string | undefined {
-    return count > 0 ? `${count} arrêt${count > 1 ? "s" : ""}` : undefined;
-}
-
-type DetailedTripItineraryProps = {
-    departure?: Address;
-    arrival?: Address;
-    stops: TripStopDto[];
-    stopCount?: never;
-};
-
-type BriefTripItineraryProps = {
+type TripItineraryProps = {
     departure?: Address;
     arrival?: Address;
     departureDate?: string;
     arrivalDate?: string;
-    stopCount?: number;
-    stops?: never;
+    stops: TripStopDto[];
 };
 
-type TripItineraryProps = DetailedTripItineraryProps | BriefTripItineraryProps;
-
-function DetailedItinerary({ departure, arrival, stops }: DetailedTripItineraryProps) {
+export default function TripItinerary({ departure, arrival, departureDate, arrivalDate, stops }: TripItineraryProps) {
     const [showDetails, setShowDetails] = useState(false);
     const orderedStops = [...stops].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
     const hasStops = orderedStops.length > 0;
-    const countText = stopCountText(orderedStops.length);
 
     return (
         <div className={styles.container}>
@@ -53,72 +39,35 @@ function DetailedItinerary({ departure, arrival, stops }: DetailedTripItineraryP
 
             <ul className={styles.steps}>
                 <li className={styles.step}>
-                    <Circle size={13} />
-                    <span className={styles.step_text}>{addressToBriefString(departure)}</span>
+                    <span className={`${styles.marker} ${styles.markerEnd}`} />
+                    <span className={styles.step_text}>{addressToString(departure)}</span>
+                    {departureDate && <span className={styles.step_date}>{formatDate(departureDate)}</span>}
                 </li>
-                {showDetails
-                    ? orderedStops.map((stop) => (
+
+                {showDetails ? (
+                    orderedStops.map((stop) => (
                         <li key={stop.id} className={styles.step}>
-                            <MapPin size={13} />
-                            <span className={styles.step_text}>{addressToBriefString(stop.address)}</span>
+                            <span className={`${styles.marker} ${styles.markerStop}`} />
+                            <span className={styles.step_text}>{addressToString(stop.address)}</span>
                         </li>
                     ))
-                    : countText && (
-                        <li className={`${styles.step} ${styles.stopsCount}`}>
-                            <MapPin size={13} />
-                            <span className={styles.step_text}>{countText}</span>
-                        </li>
-                    )}
+                ) : hasStops && (
+                    <li className={styles.step}>
+                        <span className={styles.marker} />
+                        <Tag
+                            size="sm"
+                            icon={<MapPin size={12} />}
+                            value={`${orderedStops.length} arrêt${orderedStops.length > 1 ? "s" : ""}`}
+                        />
+                    </li>
+                )}
+
                 <li className={styles.step}>
-                    <MapPin size={13} />
-                    <span className={styles.step_text}>{addressToBriefString(arrival)}</span>
+                    <span className={`${styles.marker} ${styles.markerEnd}`} />
+                    <span className={styles.step_text}>{addressToString(arrival)}</span>
+                    {arrivalDate && <span className={styles.step_date}>{formatDate(arrivalDate)}</span>}
                 </li>
             </ul>
         </div>
     );
-}
-
-function BriefItinerary({ departure, arrival, departureDate, arrivalDate, stopCount }: BriefTripItineraryProps) {
-    const countText = stopCount ? stopCountText(stopCount) : undefined;
-
-    return (
-        <div className={styles.briefRoute}>
-            <div className={styles.briefPoint}>
-                <Text tag="span" muted className={styles.briefLabel}>Départ</Text>
-                <Text tag="p" weight="semibold" className={styles.briefAddress}>
-                    {departure?.city}
-                </Text>
-                <Text tag="span" muted className={styles.briefCountry}>{departure?.country}</Text>
-                {departureDate && (
-                    <Text tag="span" muted className={styles.briefDate}>{formatDate(departureDate)}</Text>
-                )}
-            </div>
-
-            <div className={styles.routeLine}>
-                <span className={styles.routeDot} />
-                <span className={styles.routeTrack} />
-                {countText && <span className={styles.routeStops}>{countText}</span>}
-                <span className={styles.routeTrack} />
-                <span className={styles.routeDot} />
-            </div>
-
-            <div className={`${styles.briefPoint} ${styles.briefPointRight}`}>
-                <Text tag="span" muted className={styles.briefLabel}>Arrivée</Text>
-                <Text tag="p" weight="semibold" className={styles.briefAddress}>
-                    {arrival?.city}
-                </Text>
-                <Text tag="span" muted className={styles.briefCountry}>{arrival?.country}</Text>
-                {arrivalDate && (
-                    <Text tag="span" muted className={styles.briefDate}>{formatDate(arrivalDate)}</Text>
-                )}
-            </div>
-        </div>
-    );
-}
-
-export default function TripItinerary(props: TripItineraryProps) {
-    if (props.stops) {
-        return <DetailedItinerary {...props} />;
-    }
-    return <BriefItinerary {...props} />;
 }

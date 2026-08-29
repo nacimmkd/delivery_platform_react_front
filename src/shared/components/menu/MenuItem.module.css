@@ -38,3 +38,17 @@
     align-items: center;
     flex-shrink: 0;
 }
+
+.label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.trailing {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}

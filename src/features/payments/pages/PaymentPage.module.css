@@ -44,6 +44,14 @@
     color: var(--color-espresso);
 }
 
+.successIcon {
+    color: var(--color-success);
+}
+
+.errorIcon {
+    color: var(--color-danger);
+}
+
 @media (max-width: 560px) {
     .page {
         padding: 20px 16px;

@@ -1,7 +1,7 @@
 import styles from "./Tag.module.css";
 
 type Size = "sm" | "md";
-type Variant = "default" | "accent";
+type Variant = "default" | "accent" | "success";
 type IconPosition = "left" | "right";
 
 type TagProps = {
@@ -26,6 +26,7 @@ export default function Tag({
         styles.tag,
         styles[size],
         variant === "accent" ? styles.accent : "",
+        variant === "success" ? styles.success : "",
         className,
     ].filter(Boolean).join(" ");
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Parcel.module.css";
+import styles from "./ParcelCard.module.css";
 import Text from "@/shared/components/text/Text.tsx";
 import Tag from "@/shared/components/tag/Tag.tsx";
 import Container from "@/shared/components/container/Container.tsx";
@@ -11,16 +11,19 @@ import formatDate from "@/shared/utils/formatDate.ts";
 import Confirmation from "@/shared/components/confirmation/Confirmation.tsx";
 import useDeleteParcel from "@/features/parcel/hooks/useDeleteParcel.ts";
 import { addressToBriefString } from "@/shared/utils/addressToString";
+import { parcelStateLabel } from "@/features/parcel/utils/parcelLabels.ts";
 import { paths } from "@/app/routes/paths.ts";
 
 type ParcelProps = {
     parcel: ParcelSummary;
 };
 
-export default function Parcel({ parcel }: ParcelProps) {
+export default function ParcelCard({ parcel }: ParcelProps) {
     const { parcelId, title, weightKg, size, fragile, pickup, dropoff, state, images, publishedAt } = parcel;
     const { deleteParcel, isLoading: isDeleting } = useDeleteParcel();
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
+    const canDelete = parcel?.state === "PUBLISHED";
 
     async function handleConfirmDelete() {
         const success = await deleteParcel(parcelId ?? "");
@@ -30,9 +33,9 @@ export default function Parcel({ parcel }: ParcelProps) {
     return (
         <div className={styles.container}>
             <div className={styles.status}>
-                <Tag icon={<Route />} value={state ?? ""} />
+                <Tag icon={<Route />} value={parcelStateLabel(state)} />
             </div>
-            <Button
+            {canDelete && <Button
                 iconOnly
                 variant="danger"
                 size="sm"
@@ -40,7 +43,8 @@ export default function Parcel({ parcel }: ParcelProps) {
                 ariaLabel="Supprimer le colis"
                 className={styles.delete_button}
                 onClick={() => setIsConfirmOpen(true)}
-            />
+            /> }
+
             <div className={styles.image_container}>
                 <Carousel
                     images={(images ?? [])
@@ -75,11 +79,7 @@ export default function Parcel({ parcel }: ParcelProps) {
             </Container>
             <Container direction="row" gap={10} className={styles.links_container}>
                 <Button to={`/parcels/${parcelId}`} label="Détails" variant="secondary" fullWidth />
-                {state === "PUBLISHED" ? (
-                    <Button to={`${paths.search}?parcelId=${parcelId}`} label="Envoyer" variant="main" fullWidth />
-                ) : (
-                    <span className={styles.link_placeholder} aria-hidden="true" />
-                )}
+                {state === "PUBLISHED" && (<Button to={`${paths.search}?parcelId=${parcelId}`} label="Envoyer" variant="main" fullWidth />)}
             </Container>
 
             {isConfirmOpen && (

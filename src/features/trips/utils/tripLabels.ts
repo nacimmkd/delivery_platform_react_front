@@ -2,8 +2,9 @@ import type { TripSummary } from "@/shared/types";
 
 const TRIP_STATE_LABELS: Record<NonNullable<TripSummary["state"]>, string> = {
     PUBLISHED: "Publié",
+    ACTIVE: "En cours",
     FULL: "Complet",
-    IN_TRANSIT: "En transit",
+    EXPIRED: "Expiré",
     COMPLETED: "Terminé",
     CANCELLED: "Annulé",
 };

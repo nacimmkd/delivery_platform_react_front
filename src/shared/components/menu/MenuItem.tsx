@@ -5,28 +5,35 @@ import { Link } from "react-router-dom";
 type MenuItemProps = {
     label: string;
     icon?: React.ReactNode;
+    trailing?: React.ReactNode;
     onClick?: () => void;
     to?: AppPath;
     danger?: boolean;
 };
 
-export default function MenuItem({ label, icon, onClick, to, danger }: MenuItemProps) {
+export default function MenuItem({ label, icon, trailing, onClick, to, danger }: MenuItemProps) {
 
     const classes = `${styles.item} ${danger ? styles.danger : ""}`;
+
+    const content = (
+        <>
+            {icon && <span className={styles.icon}>{icon}</span>}
+            <span className={styles.label}>{label}</span>
+            {trailing && <span className={styles.trailing}>{trailing}</span>}
+        </>
+    );
 
     if (to) {
         return (
             <Link className={classes} to={to}>
-                {icon && <span className={styles.icon}>{icon}</span>}
-                {label}
+                {content}
             </Link>
         );
     }
 
     return (
         <button className={classes} onClick={onClick}>
-            {icon && <span className={styles.icon}>{icon}</span>}
-            {label}
+            {content}
         </button>
     );
 }

@@ -3,10 +3,10 @@ import { Star } from "lucide-react";
 import Container from "@/shared/components/container/Container.tsx";
 import Icon from "@/shared/components/icon/Icon.tsx";
 import Text from "@/shared/components/text/Text.tsx";
-import type { UserBrief as UserBriefType } from "@/shared/types";
+import type { ProfileBrief } from "@/shared/types";
 
 type UserBriefProps = {
-    user: UserBriefType;
+    user: ProfileBrief;
 };
 
 export default function UserBrief({ user }: UserBriefProps) {
